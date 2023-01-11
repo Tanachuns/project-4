@@ -10,6 +10,7 @@
  - **FrontEnd** : [ReactJS](https://reactjs.org/), [Tailwind](https://tailwindcss.com/),[Axios](https://axios-http.com/docs/intro)
   - **Backend**:  [Express](https://expressjs.com/), [prismaORM](https://www.prisma.io/)
   - **Database**: PostgreSql
+  - **Hosting**: [bit.io](https://bit.io/), [Netlify](https://www.netlify.com/), [flyio](https://fly.io/)
 
 ## Wire Frames
 
