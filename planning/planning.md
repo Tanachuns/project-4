@@ -8,9 +8,7 @@
 ## Stacks
 
 **FrontEnd** : [ReactJS](https://reactjs.org/), [Tailwind](https://tailwindcss.com/), [Axios](https://axios-http.com/docs/intro)
-
 **Backend**:  [Express](https://expressjs.com/), [prismaORM](https://www.prisma.io/)
-
 **Database**: PostgreSql
 ## Wire Frames
 
