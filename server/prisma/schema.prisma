@@ -11,28 +11,46 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
-}
-
-model Profile {
-  id     Int     @id @default(autoincrement())
-  bio    String?
-  user   User    @relation(fields: [userId], references: [id])
-  userId Int     @unique
-}
-
 model User {
   id      Int      @id @default(autoincrement())
+  title   String?
   email   String   @unique
-  name    String?
-  posts   Post[]
-  profile Profile?
+  first_name String?
+  last_name String?
+  citizen_id String?
+  birth_date DateTime? @db.Date
+  address String?
+  phone_number String?
+  password String?
+  is_admin Boolean?
+  insurance Insurance[]
+}
+
+model Plan {
+  id Int @id @default(autoincrement())
+  detail String?
+  type String?
+  plan_price Int?
+  unit String?
+  cover Cover[]
+  insurance Insurance[]
+}
+
+model Cover {
+  id      Int      @id @default(autoincrement())
+  plan Plan @relation(fields: [plan_id], references: [id])
+  plan_id Int
+  coverage Int?
+}
+
+model Insurance {
+  id      Int      @id @default(autoincrement())
+  plan Plan @relation(fields: [plan_id], references: [id])
+  plan_id Int
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+  total_price Int?
+  destination String?
+  deperture_date DateTime? @db.Date
+  return_date DateTime? @db.Date
 }
