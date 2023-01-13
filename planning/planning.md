@@ -29,7 +29,7 @@ Travel Insurance WebSite
 
 **Cover**
 | id | plan_id | detail | coverage |
-|--|--|--|--|--|
+|--|--|--|--|
 | pk | fk(Plan) |varchar(255) | integer |
 
 **Insurance**
