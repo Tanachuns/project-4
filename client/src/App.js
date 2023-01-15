@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import "./App.css";
+import NavbarComp from "./components/Navbar/NavbarComp";
 
 function App() {
   const [test, setTest] = React.useState();
@@ -20,6 +20,7 @@ function App() {
 
   return (
     <div>
+      <NavbarComp />
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <h1> Test{test}</h1>
     </div>

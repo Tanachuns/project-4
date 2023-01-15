@@ -53,4 +53,5 @@ model Insurance {
   destination String?
   deperture_date DateTime? @db.Date
   return_date DateTime? @db.Date
+  confirm Boolean @default(false)
 }

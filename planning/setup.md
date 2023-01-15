@@ -10,3 +10,6 @@ Client
 npx create-react-app client
 cd client
 npm start
+
+Prisma
+npx prisma

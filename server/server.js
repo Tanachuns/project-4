@@ -11,6 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/user", routes.user);
 
-app.listen(3050, function () {
-  console.log("Server listening on http://localhost:" + 3050);
+app.listen(8080, function () {
+  console.log("Server listening on http://localhost:" + 8080);
 });
