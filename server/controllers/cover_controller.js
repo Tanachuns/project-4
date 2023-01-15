@@ -3,42 +3,38 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const getAllPlan = async (req, res) => {
-  const plan = await prisma.plan.findMany().catch((e) => {
+const getAllCover = async (req, res) => {
+  const cover = await prisma.cover.findMany().catch((e) => {
     res.status(500).send(e.message);
   });
-  res.status(200).json(plan);
+  res.status(200).json(cover);
 };
 
-const getOnePlan = async (req, res) => {
-  const plan = await prisma.plan
+const getOneCover = async (req, res) => {
+  const cover = await prisma.cover
     .findUnique({
       where: {
         id: parseInt(req.params.id),
-      },
-      include: {
-        cover: true, // Return all fields
       },
     })
     .catch((e) => {
       res.status(500).send(e.message);
     });
-
-  res.status(200).json(plan);
+  res.status(200).json(cover);
 };
 
-const cratePlan = async (req, res) => {
-  const plan = await prisma.plan
+const crateCover = async (req, res) => {
+  const cover = await prisma.cover
     .create({
       data: req.body,
     })
     .catch((e) => {
       res.status(500).send(e.message);
     });
-  res.status(201).send(plan);
+  res.status(201).send(cover);
 };
-const updatePlan = async (req, res) => {
-  const plan = await prisma.plan
+const updateCover = async (req, res) => {
+  const cover = await prisma.cover
     .update({
       where: {
         id: parseInt(req.params.id),
@@ -48,11 +44,11 @@ const updatePlan = async (req, res) => {
     .catch((e) => {
       res.status(500).send(e.message);
     });
-  res.status(200).send(plan);
+  res.status(200).send(cover);
 };
 
-const deletePlan = async (req, res) => {
-  const plan = await prisma.plan
+const deleteCover = async (req, res) => {
+  const cover = await prisma.cover
     .delete({
       where: {
         id: parseInt(req.params.id),
@@ -61,12 +57,12 @@ const deletePlan = async (req, res) => {
     .catch((e) => {
       res.status(500).send(e.message);
     });
-  res.status(200).send(plan);
+  res.status(200).send(cover);
 };
 module.exports = {
-  getAllPlan,
-  getOnePlan,
-  cratePlan,
-  updatePlan,
-  deletePlan,
+  getAllCover,
+  getOneCover,
+  crateCover,
+  updateCover,
+  deleteCover,
 };

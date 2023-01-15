@@ -18,7 +18,7 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Plan" (
     "id" SERIAL NOT NULL,
-    "detail" TEXT,
+    "name" TEXT,
     "type" TEXT,
     "plan_price" INTEGER,
     "unit" TEXT,
@@ -30,6 +30,7 @@ CREATE TABLE "Plan" (
 CREATE TABLE "Cover" (
     "id" SERIAL NOT NULL,
     "plan_id" INTEGER NOT NULL,
+    "detail" TEXT NOT NULL,
     "coverage" INTEGER,
 
     CONSTRAINT "Cover_pkey" PRIMARY KEY ("id")
