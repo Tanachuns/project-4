@@ -18,7 +18,7 @@ model User {
   first_name String?
   last_name String?
   citizen_id String?
-  birth_date DateTime? @db.Date
+  birth_date DATE? @db.Date
   address String?
   phone_number String?
   password String?
@@ -51,7 +51,7 @@ model Insurance {
   user_id Int
   total_price Int?
   destination String?
-  deperture_date DateTime? @db.Date
-  return_date DateTime? @db.Date
+  deperture_date DATE? @db.Date
+  return_date DATE? @db.Date
   payment_status Boolean @default(false)
 }

@@ -35,6 +35,7 @@ const crateUser = async (req, res) => {
   res.status(201).send(user);
 };
 const updateUser = async (req, res) => {
+  req.body.birth_date = new Date(req.body.birth_date);
   const user = await prisma.user
     .update({
       where: {
