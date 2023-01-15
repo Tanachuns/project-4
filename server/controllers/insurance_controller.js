@@ -16,6 +16,10 @@ const getOneInsurance = async (req, res) => {
       where: {
         id: parseInt(req.params.id),
       },
+      include: {
+        user: true,
+        plan: true,
+      },
     })
     .catch((e) => {
       res.status(500).send(e.message);

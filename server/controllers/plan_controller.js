@@ -17,7 +17,7 @@ const getOnePlan = async (req, res) => {
         id: parseInt(req.params.id),
       },
       include: {
-        cover: true, // Return all fields
+        cover: true,
       },
     })
     .catch((e) => {
