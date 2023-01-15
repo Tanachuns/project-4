@@ -3,6 +3,7 @@ const { PrismaClient } = require("@prisma/client");
 const cors = require("cors");
 const routes = require("./routes");
 const bodyParser = require("body-parser").json();
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
@@ -11,6 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/user", routes.user);
 
-app.listen(8080, function () {
-  console.log("Server listening on http://localhost:" + 8080);
+app.listen(process.env.PORT, function () {
+  console.log("Server listening on http://localhost:" + process.env.PORT);
 });
