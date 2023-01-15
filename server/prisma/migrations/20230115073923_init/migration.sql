@@ -44,7 +44,7 @@ CREATE TABLE "Insurance" (
     "destination" TEXT,
     "deperture_date" DATE,
     "return_date" DATE,
-    "confirm" BOOLEAN NOT NULL DEFAULT false,
+    "payment_status" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Insurance_pkey" PRIMARY KEY ("id")
 );

@@ -11,6 +11,7 @@ app.use(bodyParser);
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/user", routes.user);
+app.use("/plan", routes.plan);
 
 app.listen(process.env.PORT, function () {
   console.log("Server listening on http://localhost:" + process.env.PORT);

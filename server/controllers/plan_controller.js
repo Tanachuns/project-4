@@ -3,15 +3,15 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const getAllUser = async (req, res) => {
-  const user = await prisma.user.findMany().catch((e) => {
+const getAllPlan = async (req, res) => {
+  const plan = await prisma.plan.findMany().catch((e) => {
     res.status(500).send(e.message);
   });
-  res.status(200).json(user);
+  res.status(200).json(plan);
 };
 
-const getOneUser = async (req, res) => {
-  const user = await prisma.user
+const getOnePlan = async (req, res) => {
+  const plan = await prisma.plan
     .findUnique({
       where: {
         id: parseInt(req.params.id),
@@ -20,22 +20,21 @@ const getOneUser = async (req, res) => {
     .catch((e) => {
       res.status(500).send(e.message);
     });
-  res.status(200).json(user);
+  res.status(200).json(plan);
 };
 
-const crateUser = async (req, res) => {
-  req.body.birth_date = new Date(req.body.birth_date);
-  const user = await prisma.user
+const cratePlan = async (req, res) => {
+  const plan = await prisma.plan
     .create({
       data: req.body,
     })
     .catch((e) => {
       res.status(500).send(e.message);
     });
-  res.status(201).send(user);
+  res.status(201).send(plan);
 };
-const updateUser = async (req, res) => {
-  const user = await prisma.user
+const updatePlan = async (req, res) => {
+  const plan = await prisma.plan
     .update({
       where: {
         id: parseInt(req.params.id),
@@ -45,11 +44,11 @@ const updateUser = async (req, res) => {
     .catch((e) => {
       res.status(500).send(e.message);
     });
-  res.status(200).send(user);
+  res.status(200).send(plan);
 };
 
-const deleteUser = async (req, res) => {
-  const user = await prisma.user
+const deletePlan = async (req, res) => {
+  const plan = await prisma.plan
     .delete({
       where: {
         id: parseInt(req.params.id),
@@ -58,12 +57,12 @@ const deleteUser = async (req, res) => {
     .catch((e) => {
       res.status(500).send(e.message);
     });
-  res.status(200).send(user);
+  res.status(200).send(plan);
 };
 module.exports = {
-  getAllUser,
-  getOneUser,
-  crateUser,
-  updateUser,
-  deleteUser,
+  getAllPlan,
+  getOnePlan,
+  cratePlan,
+  updatePlan,
+  deletePlan,
 };
