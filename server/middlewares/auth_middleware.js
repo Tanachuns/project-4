@@ -1,14 +1,13 @@
 const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization.split(" ")[1];
-  console.log(token);
-  if (!token) {
+  const token = req.headers.authorization;
+  if (token === undefined) {
     return res.status(403).json({ message: "Unauthentication" });
   }
   try {
+    const token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(decoded);
     req.user = decoded;
   } catch (err) {
     return res
