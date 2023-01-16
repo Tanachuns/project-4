@@ -4,11 +4,10 @@ import NavbarComp from "./components/Navbar/NavbarComp";
 
 function App() {
   const [test, setTest] = React.useState();
-  const url = process.env.REACT_APP_URL;
 
   React.useEffect(() => {
     axios
-      .get(url + "/plan")
+      .get(process.env.REACT_APP_URL + "/plan")
       .then((res) => {
         console.log(res);
         setTest(JSON.stringify(res.data));
@@ -17,7 +16,6 @@ function App() {
         console.log(err);
       });
   }, []);
-  console.log(test);
 
   return (
     <div>
