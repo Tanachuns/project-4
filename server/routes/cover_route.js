@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router(); //creates a router object
+const router = express.Router();
 const ctrl = require("../controllers");
 
 router.get("/", ctrl.cover.getAllCover);

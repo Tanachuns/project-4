@@ -3,4 +3,5 @@ module.exports = {
   plan: require("./plan_route"),
   insurance: require("./insurance_route"),
   cover: require("./cover_route"),
+  auth: require("./auth_route"),
 };
