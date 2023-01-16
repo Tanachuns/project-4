@@ -13,3 +13,6 @@ npm start
 
 Prisma
 npx prisma
+
+Flyio
+flyctl deploy

@@ -3,61 +3,89 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const getAllCover = async (req, res) => {
-  const cover = await prisma.cover.findMany().catch((e) => {
-    res.status(500).send(e.message);
-  });
-  res.status(200).json(cover);
+const getAllCover = (req, res) => {
+  prisma.cover
+    .findMany()
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((e) => {
+      res.status(500).json({
+        message: "The requested resource was not found.",
+        error: e.message,
+      });
+    });
 };
 
-const getOneCover = async (req, res) => {
-  const cover = await prisma.cover
+const getOneCover = (req, res) => {
+  prisma.cover
     .findUnique({
       where: {
         id: parseInt(req.params.id),
       },
     })
+    .then((data) => {
+      res.status(200).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "The requested resource was not found.",
+        error: e.message,
+      });
     });
-  res.status(200).json(cover);
 };
 
-const crateCover = async (req, res) => {
-  const cover = await prisma.cover
+const crateCover = (req, res) => {
+  prisma.cover
     .create({
       data: req.body,
     })
+    .then((data) => {
+      res.status(201).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "No resource is created.",
+        error: e.message,
+      });
     });
-  res.status(201).send(cover);
 };
+
 const updateCover = async (req, res) => {
-  const cover = await prisma.cover
+  prisma.cover
     .update({
       where: {
         id: parseInt(req.params.id),
       },
       data: req.body,
     })
+    .then((data) => {
+      res.status(201).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "No resource is updated.",
+        error: e.message,
+      });
     });
-  res.status(200).send(cover);
 };
 
-const deleteCover = async (req, res) => {
-  const cover = await prisma.cover
+const deleteCover = (req, res) => {
+  prisma.cover
     .delete({
       where: {
         id: parseInt(req.params.id),
       },
     })
+    .then((data) => {
+      res.status(201).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "No resource is deleted.",
+        error: e.message,
+      });
     });
-  res.status(200).send(cover);
 };
 module.exports = {
   getAllCover,

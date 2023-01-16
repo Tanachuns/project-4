@@ -3,15 +3,22 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const getAllPlan = async (req, res) => {
-  const plan = await prisma.plan.findMany().catch((e) => {
-    res.status(500).send(e.message);
-  });
-  res.status(200).json(plan);
+const getAllPlan = (req, res) => {
+  prisma.plan
+    .findMany()
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((e) => {
+      res.status(500).json({
+        message: "The requested resource was not found.",
+        error: e.message,
+      });
+    });
 };
 
 const getOnePlan = async (req, res) => {
-  const plan = await prisma.plan
+  prisma.plan
     .findUnique({
       where: {
         id: parseInt(req.params.id),
@@ -20,48 +27,68 @@ const getOnePlan = async (req, res) => {
         cover: true,
       },
     })
+    .then((data) => {
+      res.status(200).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "The requested resource was not found.",
+        error: e.message,
+      });
     });
-
-  res.status(200).json(plan);
 };
 
-const cratePlan = async (req, res) => {
-  const plan = await prisma.plan
+const cratePlan = (req, res) => {
+  prisma.plan
     .create({
       data: req.body,
     })
+    .then((data) => {
+      res.status(200).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "No resource is created.",
+        error: e.message,
+      });
     });
-  res.status(201).send(plan);
 };
-const updatePlan = async (req, res) => {
-  const plan = await prisma.plan
+
+const updatePlan = (req, res) => {
+  prisma.plan
     .update({
       where: {
         id: parseInt(req.params.id),
       },
       data: req.body,
     })
+    .then((data) => {
+      res.status(200).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "No resource is updated.",
+        error: e.message,
+      });
     });
-  res.status(200).send(plan);
 };
 
-const deletePlan = async (req, res) => {
-  const plan = await prisma.plan
+const deletePlan = (req, res) => {
+  prisma.plan
     .delete({
       where: {
         id: parseInt(req.params.id),
       },
     })
+    .then((data) => {
+      res.status(200).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "No resource is deleted.",
+        error: e.message,
+      });
     });
-  res.status(200).send(plan);
 };
 module.exports = {
   getAllPlan,

@@ -3,15 +3,22 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const getAllInsurance = async (req, res) => {
-  const insurance = await prisma.insurance.findMany().catch((e) => {
-    res.status(500).send(e.message);
-  });
-  res.status(200).json(insurance);
+const getAllInsurance = (req, res) => {
+  prisma.insurance
+    .findMany()
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((e) => {
+      res.status(500).json({
+        message: "The requested resource was not found.",
+        error: e.message,
+      });
+    });
 };
 
-const getOneInsurance = async (req, res) => {
-  const insurance = await prisma.insurance
+const getOneInsurance = (req, res) => {
+  prisma.insurance
     .findUnique({
       where: {
         id: parseInt(req.params.id),
@@ -21,10 +28,15 @@ const getOneInsurance = async (req, res) => {
         plan: true,
       },
     })
+    .then((data) => {
+      res.status(200).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "The requested resource was not found.",
+        error: e.message,
+      });
     });
-  res.status(200).json(insurance);
 };
 
 const crateInsurance = async (req, res) => {
@@ -34,38 +46,53 @@ const crateInsurance = async (req, res) => {
     .create({
       data: req.body,
     })
+    .then((data) => {
+      res.status(201).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "No resource is created.",
+        error: e.message,
+      });
     });
-  res.status(201).send(insurance);
 };
-const updateInsurance = async (req, res) => {
+const updateInsurance = (req, res) => {
   req.body.deperture_date = new Date(req.body.deperture_date);
   req.body.return_date = new Date(req.body.return_date);
-  const insurance = await prisma.insurance
+  prisma.insurance
     .update({
       where: {
         id: parseInt(req.params.id),
       },
       data: req.body,
     })
+    .then((data) => {
+      res.status(201).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "No resource is update.",
+        error: e.message,
+      });
     });
-  res.status(200).send(insurance);
 };
 
-const deleteInsurance = async (req, res) => {
-  const insurance = await prisma.insurance
+const deleteInsurance = (req, res) => {
+  prisma.insurance
     .delete({
       where: {
         id: parseInt(req.params.id),
       },
     })
+    .then((data) => {
+      res.status(201).json(data);
+    })
     .catch((e) => {
-      res.status(500).send(e.message);
+      res.status(500).json({
+        message: "No resource is deleted.",
+        error: e.message,
+      });
     });
-  res.status(200).send(insurance);
 };
 module.exports = {
   getAllInsurance,
