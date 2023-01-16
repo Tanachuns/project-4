@@ -6,8 +6,8 @@ import "./Home.css"
 import HomeCard from "./HomeCard";
 
 const Home = () => {
-    return (
-        <div className="banner">
+    return (<>
+        <div className="home-banner">
             <Row>
                 <Col>
                     <div className="banner-left">
@@ -20,7 +20,10 @@ const Home = () => {
                         <button className="btn btn-success" type="button">Buy now</button>
                     </div>
                 </Col>
+            
+            
             </Row>
+            </div>
             <br/>
             <Container>
                 <h2>Plans</h2>
@@ -35,7 +38,7 @@ const Home = () => {
                          <img src="https://www.wordstream.com/wp-content/uploads/2021/07/persuasive-ads-coca-cola-1.jpg" alt="" />
                 </Row>
             </Container>
-        </div>
+            </>
       );
 }
  

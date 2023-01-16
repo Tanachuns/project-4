@@ -20,7 +20,7 @@ function NavbarComp() {
   return (
     <Navbar bg="dark" variant='dark' expand="lg">
       <Container>
-         <Link to="/">
+         <Link style={{textDecoration:"none"}} to="/">
           <Navbar.Brand href="#home">
               <img
                 src="./src/images/logo.png"
