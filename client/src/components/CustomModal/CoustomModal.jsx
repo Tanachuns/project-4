@@ -2,13 +2,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 import React from 'react';
-import axios from 'axios'
 
 
-function Loading(props) {
- 
-  
-
+function CoustomModal(props) {
   return (
     <Modal
       {...props}
@@ -16,10 +12,17 @@ function Loading(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      asd
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          {props.title}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+       <h3>{props.message}</h3>
+      </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   );}
-export default Loading
+export default CoustomModal

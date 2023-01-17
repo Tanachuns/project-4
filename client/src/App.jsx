@@ -1,6 +1,8 @@
 import React from "react";
 import NavbarComp from "./components/Navbar/NavbarComp";
 import { Route, Routes, Link, Navigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 import Home from "./components/Home/Home";
 import Footer from "./components/Footer/Footer";
@@ -13,6 +15,7 @@ function App() {
         <NavbarComp />
       </header>
       <main>
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/plan" element={<Plan />} />

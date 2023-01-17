@@ -3,12 +3,26 @@ import Modal from 'react-bootstrap/Modal';
 
 import React from 'react';
 import axios from 'axios'
-import Loading from '../Loading/Loading';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Login(props) {
   const [logindata,setLoginData] = React.useState({})
-  const [isLoading,setIsLoading] = React.useState()
+ const toastId = React.useRef(null);
+  const loginSuccess = () =>{
+    if(! toast.isActive(toastId.current)) {
+      toastId.current = toast.success("Login Success", {
+        position: toast.POSITION.TOP_CENTER
+      });
+    }
+    };
+
+  const loginErr = () =>{toast.warn("Email or Password is Incorrect", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000
+      });};
+
   const submitHandler = (e) => {
     e.preventDefault()
     setLoginData((prevState) => ({
@@ -19,24 +33,21 @@ function Login(props) {
 
   const loginHandler = (e)=>{
     e.preventDefault()
-    axios.post(process.env.REACT_APP_URL + "/auth/login", logindata)
-      .then((res) => {
+    toast.promise(
+    axios.post(process.env.REACT_APP_URL + "/auth/login", logindata),
+    {
+      pending: 'Logging',
+      success: 'Success 👌',
+      error: 'Email or password is incorrect.',
+    }
+  ).then((res) => {
         localStorage.setItem("jwt", res.data.token);
         props.onHide()
-      }).then(() => {
-        setTimeout(() => {
-          setIsLoading(<Loading/>);
-        }, 3000);
       })
-      .catch((err) => {
-        
-      });
   }
 
-
-  
-
   return (
+    <>
     <Modal
       {...props}
       size="lg"
@@ -66,8 +77,6 @@ function Login(props) {
            <button type="submit" className="btn btn-primary float-right">
              Login
            </button>
-           
-    
          </form>
        </div>
       </Modal.Body>
@@ -75,5 +84,6 @@ function Login(props) {
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
+    </>
   );}
 export default Login

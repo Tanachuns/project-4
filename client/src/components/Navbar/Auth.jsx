@@ -2,12 +2,21 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import React from 'react';
 import jwt_decode from "jwt-decode";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+    
 
 const Auth = () => {
-            
+  
             var user = jwt_decode(localStorage.getItem('jwt'));
-            console.log(user);
-            return (  
+             const logoutSuccess = () =>{
+              console.log("test");
+              toast.success("Success", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1500
+      });};
+            return (  <>
             <NavDropdown title={"Welcome, "+user.name} id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">My Insurance</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -16,12 +25,16 @@ const Auth = () => {
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={()=>{
                 localStorage.removeItem("jwt")
-                window.location.reload(false);
+                logoutSuccess()
+                setTimeout(() => {
+                  window.location.reload(false);
+                }, 2000);
               }
                 }>
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
+</>
           )
 }
     

@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import React from 'react';
 
+    
 
 import Login from '../Login/Login'
 import Register from "../Register/Register";
@@ -16,6 +17,9 @@ function NavbarComp() {
   const [isReg,setIsReg] = React.useState(false)
   const [isAuth,setIsAuth] = React.useState(localStorage.getItem('jwt'))
   const jwt = localStorage.getItem("jwt")
+
+ 
+
   React.useEffect(()=>{
     console.log(localStorage.getItem('jwt'));
     if(localStorage.getItem('jwt')){
@@ -58,13 +62,8 @@ function NavbarComp() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    <Login
-        show={isLoggedIn}
-        onHide={() => setIsLoggedIn(false)}
-      />
-    <Register show={isReg}
-        onHide={() => setIsReg(false)}/>
-
+    <Login show={isLoggedIn} onHide={() => setIsLoggedIn(false)}/>
+    <Register show={isReg} onHide={() => setIsReg(false)}/>
     </>
   )
 }

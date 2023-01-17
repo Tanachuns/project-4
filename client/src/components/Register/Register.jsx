@@ -2,9 +2,20 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import React from 'react';
 import axios from 'axios';
-const Register = (props) => {
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const Register = (props) => {
   const [regdata,setRegData] = React.useState({})
+  const regSuccess = () =>{toast.success("Register Success", {
+        position: toast.POSITION.TOP_CENTER
+      });};
+
+  const regErr = () =>{toast.warn("Something went wrong, Try again", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5000
+      });};
   const submitHandler = (e) => {
     e.preventDefault()
     setRegData((prevState) => ({
@@ -14,24 +25,28 @@ const Register = (props) => {
     
   };
 
-  const loginHandler = (e)=>{
+  const regHandler = (e)=>{
     
     e.preventDefault()
     if(e.target.elements.password2.value === e.target.elements.password.value){
       delete regdata.password2
-      axios.post(process.env.REACT_APP_URL + "/auth/register", regdata)
-      .then((res) => {
+      toast.promise(
+      axios.post(process.env.REACT_APP_URL + "/auth/register", regdata),
+    {
+      pending: 'Registing',
+      success: 'Success 👌',
+      error: 'Something went wrong, Try Again',
+    }
+  ).then((res) => {
         localStorage.setItem("jwt", res.data.token);
         props.onHide()
       })
-      .catch((err) => {
-        console.log(err);
-      });
     }
-    
-
   }
-    return ( <Modal
+
+
+  
+    return ( <><Modal
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
@@ -45,9 +60,10 @@ const Register = (props) => {
       <Modal.Body>
         <div className="col-md-6 m-auto">
 
-    <form method='POST' onChange={(e)=>{submitHandler(e)}} onSubmit={(e)=>loginHandler(e)}>
+    <form method='POST' onChange={(e)=>{submitHandler(e)}} onSubmit={(e)=>regHandler(e)}>
       <div className="form-group">
-        <input type="text" list="title" placeholder='title' name='title' />
+        <label htmlFor="first_name">Title</label><br/>
+        <input type="text" list="title" placeholder='Enter Title' name='title' />
         <datalist id="title">
           <option>Mr.</option>
           <option>Miss.</option>
@@ -80,7 +96,7 @@ const Register = (props) => {
       </div>
     <div className="form-group">
       <label htmlFor="email">Email address</label>
-      <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+      <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required/>
       <small id="emailHelp" className="form-text text-muted">
         We'll never share your email with anyone else.
       </small>
@@ -88,11 +104,11 @@ const Register = (props) => {
     
     <div className="form-group">
       <label htmlFor="password">Password</label>
-      <input type="password" name="password" className="form-control" id="password" placeholder="Password" />
+      <input type="password" name="password" className="form-control" id="password" placeholder="Password" required/>
     </div>
     <div className="form-group">
       <label htmlFor="confirmpassword">Confirm Password</label>
-      <input type="password" name="password2" className="form-control" id="confirmpassword" placeholder="Password Again" />
+      <input type="password" name="password2" className="form-control" id="confirmpassword" placeholder="Password Again" required/>
     </div>
     <br/>
     <button type="submit" className="btn btn-primary float-right">
@@ -105,6 +121,7 @@ const Register = (props) => {
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
+    </>
     
     );
 }
