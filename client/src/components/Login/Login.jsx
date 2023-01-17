@@ -3,26 +3,12 @@ import Modal from 'react-bootstrap/Modal';
 
 import React from 'react';
 import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 function Login(props) {
   const [logindata,setLoginData] = React.useState({})
- const toastId = React.useRef(null);
-  const loginSuccess = () =>{
-    if(! toast.isActive(toastId.current)) {
-      toastId.current = toast.success("Login Success", {
-        position: toast.POSITION.TOP_CENTER
-      });
-    }
-    };
-
-  const loginErr = () =>{toast.warn("Email or Password is Incorrect", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 5000
-      });};
-
   const submitHandler = (e) => {
     e.preventDefault()
     setLoginData((prevState) => ({

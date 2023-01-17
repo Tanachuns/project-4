@@ -1,7 +1,7 @@
 import React from "react";
 import NavbarComp from "./components/Navbar/NavbarComp";
-import { Route, Routes, Link, Navigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { Route, Routes } from "react-router-dom";
+import { ToastContainer} from 'react-toastify';
 
 
 import Home from "./components/Home/Home";

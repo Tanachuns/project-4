@@ -2,7 +2,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import React from 'react';
 import jwt_decode from "jwt-decode";
 
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
     

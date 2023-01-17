@@ -3,19 +3,11 @@ import Modal from 'react-bootstrap/Modal';
 import React from 'react';
 import axios from 'axios';
 
-import { ToastContainer, toast } from 'react-toastify';
+import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Register = (props) => {
   const [regdata,setRegData] = React.useState({})
-  const regSuccess = () =>{toast.success("Register Success", {
-        position: toast.POSITION.TOP_CENTER
-      });};
-
-  const regErr = () =>{toast.warn("Something went wrong, Try again", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 5000
-      });};
   const submitHandler = (e) => {
     e.preventDefault()
     setRegData((prevState) => ({
@@ -33,7 +25,7 @@ const Register = (props) => {
       toast.promise(
       axios.post(process.env.REACT_APP_URL + "/auth/register", regdata),
     {
-      pending: 'Registing',
+      pending: 'Working🔧',
       success: 'Success 👌',
       error: 'Something went wrong, Try Again',
     },{
@@ -74,7 +66,7 @@ const Register = (props) => {
       </div>
       <div className="form-group">
          <label htmlFor="first_name">Firstname</label>
-        <input type="text" className="form-control" name='first_name' id="first_name" placeholder="Enter Firstname" />
+        <input type="text" className="form-control" name='first_name' id="first_name" placeholder="Enter Firstname" required />
       </div>
       <div className="form-group">
          <label htmlFor="last_name">Lastname</label>
