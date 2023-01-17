@@ -1,6 +1,8 @@
 import Container from "react-bootstrap/esm/Container";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Route, Routes, Link, Navigate } from "react-router-dom";
+
 
 import "./Home.css"
 import HomeCard from "./HomeCard";
@@ -17,7 +19,7 @@ const Home = () => {
                 </Col>
                 <Col>
                     <div className="banner-right">
-                        <button className="btn btn-success" type="button">Buy now</button>
+                        <Link to="/plan" ><button className="btn btn-success" type="button">Buy now</button></Link>
                     </div>
                 </Col>
             

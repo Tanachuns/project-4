@@ -4,20 +4,35 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import React from 'react';
-import Modal from 'react-bootstrap/Modal';
 
 
 import Login from './Login'
-import Auth from './Auth';
+import Register from "./Register";
+import Auth from "./Auth"
 
 
 function NavbarComp() {
   const [isLoggedIn,setIsLoggedIn] = React.useState(false)
+  const [isReg,setIsReg] = React.useState(false)
+  const [isAuth,setIsAuth] = React.useState(localStorage.getItem('jwt'))
+
+  React.useEffect(()=>{
+    console.log(localStorage.getItem('jwt'));
+    if(localStorage.getItem('jwt')){
+      setIsAuth(true)
+    }
+    else{
+      setIsAuth(false)
+   }
+  },[localStorage.getItem("jwt")])
+   console.log(isAuth);
             
   let authElement = (<><Nav.Link onClick={(e)=>{
     e.preventDefault() 
     setIsLoggedIn(true)}} href="#home">Login</Nav.Link>
-    <Nav.Link href="#reg">Register</Nav.Link></>)
+    <Nav.Link onClick={(e)=>{
+    e.preventDefault() 
+    setIsReg(true)}} href="#reg">Register</Nav.Link></>)
 
   return (<>
     <Navbar bg="dark" variant='dark' expand="lg">
@@ -38,7 +53,7 @@ function NavbarComp() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
-            {authElement}
+            {isAuth?<Auth/>:authElement}
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -47,6 +62,9 @@ function NavbarComp() {
         show={isLoggedIn}
         onHide={() => setIsLoggedIn(false)}
       />
+    <Register show={isReg}
+        onHide={() => setIsReg(false)}/>
+
     </>
   )
 }

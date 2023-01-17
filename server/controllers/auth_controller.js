@@ -12,6 +12,22 @@ const register = (req, res) => {
         data: req.body,
       })
       .then((data) => {
+        let jwtToken = jwt.sign(
+          {
+            name: data.first_name,
+            id: data.id,
+            is_admin: data.is_admin,
+          },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: "1h",
+          }
+        );
+        res.status(200).json({
+          ...data,
+          token: jwtToken,
+          expiresIn: 3600,
+        });
         res.status(201).json(data);
       })
       .catch((e) => {
@@ -44,7 +60,7 @@ const login = (req, res) => {
             } else {
               let jwtToken = jwt.sign(
                 {
-                  name: data.last_name,
+                  name: data.first_name,
                   id: data.id,
                   is_admin: data.is_admin,
                 },

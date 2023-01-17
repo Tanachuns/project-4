@@ -1,7 +1,32 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import React from 'react';
+import axios from 'axios'
+
+
 function Login(props) {
+  const [logindata,setLoginData] = React.useState({})
+  const submitHandler = (e) => {
+    e.preventDefault()
+    setLoginData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const loginHandler = (e)=>{
+    e.preventDefault()
+    axios.post(process.env.REACT_APP_URL + "/auth/login", logindata)
+      .then((res) => {
+        localStorage.setItem("jwt", res.data.token);
+        props.onHide()
+      })
+      .catch((err) => {
+        
+      });
+  }
+
   return (
     <Modal
       {...props}
@@ -16,7 +41,7 @@ function Login(props) {
       </Modal.Header>
       <Modal.Body>
        <div className="col-md-6 m-auto">
-         <form method='POST' action={process.env.REACT_APP_URL+"/auth/login"}>
+         <form method='POST' onChange={(e)=>{submitHandler(e)}} onSubmit={(e)=>loginHandler(e)}>
            <div className="form-group">
              <label htmlFor="email">Email address</label>
              <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
@@ -28,15 +53,11 @@ function Login(props) {
              <label htmlFor="password">Password</label>
              <input type="password" name="password" className="form-control" id="password" placeholder="Password" />
            </div>
-           <div className="form-check">
-             <input type="checkbox" name="checkbox" className="form-check-input" id="remember" />
-             <label className="form-check-label" htmlFor="remember">
-               Remember me
-             </label>
-           </div>
+           <br/>
            <button type="submit" className="btn btn-primary float-right">
              Login
            </button>
+           
          </form>
        </div>
       </Modal.Body>
