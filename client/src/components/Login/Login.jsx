@@ -3,10 +3,12 @@ import Modal from 'react-bootstrap/Modal';
 
 import React from 'react';
 import axios from 'axios'
+import Loading from '../Loading/Loading';
 
 
 function Login(props) {
   const [logindata,setLoginData] = React.useState({})
+  const [isLoading,setIsLoading] = React.useState()
   const submitHandler = (e) => {
     e.preventDefault()
     setLoginData((prevState) => ({
@@ -21,11 +23,18 @@ function Login(props) {
       .then((res) => {
         localStorage.setItem("jwt", res.data.token);
         props.onHide()
+      }).then(() => {
+        setTimeout(() => {
+          setIsLoading(<Loading/>);
+        }, 3000);
       })
       .catch((err) => {
         
       });
   }
+
+
+  
 
   return (
     <Modal
@@ -58,6 +67,7 @@ function Login(props) {
              Login
            </button>
            
+    
          </form>
        </div>
       </Modal.Body>

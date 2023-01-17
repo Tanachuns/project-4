@@ -6,8 +6,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import React from 'react';
 
 
-import Login from './Login'
-import Register from "./Register";
+import Login from '../Login/Login'
+import Register from "../Register/Register";
 import Auth from "./Auth"
 
 
@@ -15,7 +15,7 @@ function NavbarComp() {
   const [isLoggedIn,setIsLoggedIn] = React.useState(false)
   const [isReg,setIsReg] = React.useState(false)
   const [isAuth,setIsAuth] = React.useState(localStorage.getItem('jwt'))
-
+  const jwt = localStorage.getItem("jwt")
   React.useEffect(()=>{
     console.log(localStorage.getItem('jwt'));
     if(localStorage.getItem('jwt')){
@@ -24,7 +24,7 @@ function NavbarComp() {
     else{
       setIsAuth(false)
    }
-  },[localStorage.getItem("jwt")])
+  },[jwt])
    console.log(isAuth);
             
   let authElement = (<><Nav.Link onClick={(e)=>{
