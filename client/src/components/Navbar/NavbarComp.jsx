@@ -4,6 +4,10 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import React from 'react';
+import Modal from 'react-bootstrap/Modal';
+
+
+import Login from './Login'
 import Auth from './Auth';
 
 
@@ -14,10 +18,8 @@ function NavbarComp() {
     e.preventDefault() 
     setIsLoggedIn(true)}} href="#home">Login</Nav.Link>
     <Nav.Link href="#reg">Register</Nav.Link></>)
-  if(isLoggedIn){
-    authElement=<Auth/>
-  }
-  return (
+
+  return (<>
     <Navbar bg="dark" variant='dark' expand="lg">
       <Container>
          <Link style={{textDecoration:"none"}} to="/">
@@ -41,6 +43,11 @@ function NavbarComp() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Login
+        show={isLoggedIn}
+        onHide={() => setIsLoggedIn(false)}
+      />
+    </>
   )
 }
 

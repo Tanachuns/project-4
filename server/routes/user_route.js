@@ -4,7 +4,7 @@ const ctrl = require("../controllers");
 
 router.get("/", ctrl.user.getAllUser);
 router.get("/:id", ctrl.user.getOneUser);
-router.post("/", ctrl.user.crateUser);
+router.post("/", ctrl.user.createUser);
 router.post("/:id/update", ctrl.user.updateUser);
 router.post("/:id/delete", ctrl.user.deleteUser);
 

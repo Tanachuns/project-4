@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const bcrypt = require("bcrypt");
 
 const getAllUser = (req, res) => {
   prisma.user
@@ -33,21 +34,24 @@ const getOneUser = (req, res) => {
     });
 };
 
-const crateUser = (req, res) => {
-  req.body.birth_date = new Date(req.body.birth_date);
-  prisma.user
-    .create({
-      data: req.body,
-    })
-    .then((data) => {
-      res.status(201).json(data);
-    })
-    .catch((e) => {
-      res.status(500).json({
-        message: "No resource is created.",
-        error: e.message,
+const createUser = (req, res) => {
+  bcrypt.hash(req.body.password, 10).then((hash) => {
+    req.body.birth_date = new Date(req.body.birth_date);
+    req.body.password = hash;
+    prisma.user
+      .create({
+        data: req.body,
+      })
+      .then((data) => {
+        res.status(201).json(data);
+      })
+      .catch((e) => {
+        res.status(500).json({
+          message: "No resource is created.",
+          error: e.message,
+        });
       });
-    });
+  });
 };
 const updateUser = (req, res) => {
   req.body.birth_date = new Date(req.body.birth_date);
@@ -89,7 +93,7 @@ const deleteUser = (req, res) => {
 module.exports = {
   getAllUser,
   getOneUser,
-  crateUser,
+  createUser,
   updateUser,
   deleteUser,
 };
