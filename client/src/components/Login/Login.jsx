@@ -39,6 +39,8 @@ function Login(props) {
       pending: 'Logging',
       success: 'Success 👌',
       error: 'Email or password is incorrect.',
+    },{
+      position: toast.POSITION.TOP_CENTER
     }
   ).then((res) => {
         localStorage.setItem("jwt", res.data.token);

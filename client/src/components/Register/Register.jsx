@@ -36,6 +36,8 @@ const Register = (props) => {
       pending: 'Registing',
       success: 'Success 👌',
       error: 'Something went wrong, Try Again',
+    },{
+      position: toast.POSITION.TOP_CENTER
     }
   ).then((res) => {
         localStorage.setItem("jwt", res.data.token);
