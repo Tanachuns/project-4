@@ -34,6 +34,31 @@ const getOneUser = (req, res) => {
     });
 };
 
+const getUserInsurance = (req, res) => {
+  prisma.user
+    .findUnique({
+      where: {
+        id: parseInt(req.params.id),
+      },
+      include: {
+        insurance: {
+          include: {
+            plan: true,
+          },
+        },
+      },
+    })
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((e) => {
+      res.status(500).json({
+        message: "The requested resource was not found.",
+        error: e.message,
+      });
+    });
+};
+
 const createUser = (req, res) => {
   bcrypt.hash(req.body.password, 10).then((hash) => {
     req.body.birth_date = new Date(req.body.birth_date);
@@ -96,4 +121,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  getUserInsurance,
 };

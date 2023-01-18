@@ -1,6 +1,7 @@
 import NavDropdown from "react-bootstrap/NavDropdown";
 import React from 'react';
 import jwt_decode from "jwt-decode";
+import { Link } from "react-router-dom";
 
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Auth = () => {
   
-            var user = jwt_decode(localStorage.getItem('jwt'));
+            const user = jwt_decode(localStorage.getItem('jwt'));
              const logoutSuccess = () =>{
               console.log("test");
               toast.success("Success", {
@@ -18,10 +19,16 @@ const Auth = () => {
       });};
             return (  <>
             <NavDropdown title={"Welcome, "+user.name} id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">My Insurance</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                My Profile
-              </NavDropdown.Item>
+              <Link style={{textDecoration:"none"}} to="/user/insurance">
+              <NavDropdown.ItemText >
+                  My Insurance
+              </NavDropdown.ItemText> 
+              </Link>
+              <Link style={{textDecoration:"none"}} to="/user/detail">
+              <NavDropdown.ItemText >
+                  My Profile
+              </NavDropdown.ItemText>
+              </Link>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={()=>{
                 localStorage.removeItem("jwt")

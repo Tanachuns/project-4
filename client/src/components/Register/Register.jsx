@@ -29,7 +29,6 @@ const Register = (props) => {
       success: 'Success 👌',
       error: {
         render({data}){
-          // When the promise reject, data will contains the error
           return data.response.data.filed+" is already exists."
         }
       },
