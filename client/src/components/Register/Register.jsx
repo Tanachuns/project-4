@@ -63,63 +63,61 @@ const Register = (props) => {
       </Modal.Header>
       <Modal.Body>
         <div className="col-md-6 m-auto">
-
-    <form method='POST' onChange={(e)=>{submitHandler(e)}} onSubmit={(e)=>regHandler(e)}>
-      <div className="form-group">
-        <label htmlFor="first_name">Title</label><br/>
-        <input type="text" list="title" placeholder='Enter Title' name='title' />
-        <datalist id="title">
-          <option>Mr.</option>
-          <option>Miss.</option>
-          <option>Mrs.</option>
-        </datalist>
-      </div>
-      <div className="form-group">
-         <label htmlFor="first_name">*Firstname</label>
-        <input type="text" className="form-control" name='first_name' id="first_name" placeholder="Enter Firstname" required />
-      </div>
-      <div className="form-group">
-         <label htmlFor="last_name">Lastname</label>
-        <input type="text" className="form-control" name='last_name' id="last_name" placeholder="Enter Lastname" />
-      </div>
-      <div className="form-group">
-         <label htmlFor="citizen_id">Citizen ID</label>
-        <input type="text" className="form-control"name='citizen_id' id="citizen_id" placeholder="Enter Citizen ID" />
-      </div>
-      <div className="form-group">
-         <label htmlFor="birth_date">Birth Date</label>
-        <input type="date" className="form-control" name='birth_date' id="birth_date"/>
-      </div>
-      <div className="form-group">
-         <label htmlFor="birth_date">Address</label>
-        <input type="textarea" className="form-control" name='address' id="address" placeholder="Enter Address" />
-      </div>
-      <div className="form-group">
-         <label htmlFor="phone_number">Phone Number</label>
-        <input type="text" className="form-control" name='phone_number' id="phone_number" placeholder="(XX)X-XXX-XXXX" />
-      </div>
-    <div className="form-group">
-      <label htmlFor="email">*Email address</label>
-      <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required/>
-      <small id="emailHelp" className="form-text text-muted">
-        We'll never share your email with anyone else.
-      </small>
-    </div>
-    
-    <div className="form-group">
-      <label htmlFor="password">*Password</label>
-      <input type="password" name="password" className="form-control" id="password" placeholder="Password" required/>
-    </div>
-    <div className="form-group">
-      <label htmlFor="confirmpassword">*Confirm Password</label>
-      <input type="password" name="password2" className="form-control" id="confirmpassword" placeholder="Password Again" required/>
-    </div>
-    <br/>
-    <button type="submit" className="btn btn-primary float-right">
-      Register
-    </button>
-  </form>
-</div>
+        <form onChange={(e)=>{submitHandler(e)}} onSubmit={(e)=>regHandler(e)}>
+        <div className="form-group row my-3" style={{maxHeight:"10%"}}>
+            <div className="col-3">
+                <input type="text" className="form-control" list="title" placeholder='Title' name='title' />
+                <datalist id="title">
+                <option>Mr.</option>
+                <option>Miss.</option>
+                <option>Mrs.</option>
+                </datalist>
+            </div>    
+            <div className="col-4">
+                <input type="text" className="form-control" name='first_name' id="first_name" placeholder="Firstname" required />
+            </div>
+            <div className="col-5">
+            <input type="text" className="form-control" name='last_name' id="last_name" placeholder="Lastname" />
+            </div>
+        </div>
+        <div className="form-group my-3">
+            <div className="">
+                <input type="text" className="form-control"name='citizen_id' id="citizen_id" placeholder="Citizen ID" />
+            </div>
+        </div>
+        <div className="form-group my-3">
+            <div>
+                <input type="date" className="form-control" name='birth_date' id="birth_date"/>
+            </div>  
+        </div>
+        <div className="form-group my-3">
+            <div className="">
+                <textarea rows="3" className="form-control" name='address' id="address" placeholder="Address"></textarea>
+            </div>  
+        </div>
+        <div className="form-group my-3">
+            <div className="">
+                <input type="text" className="form-control" name='phone_number' id="phone_number" placeholder="(XX)X-XXX-XXXX" />
+            </div>  
+        </div>
+        <div className="form-group my-3">
+            <div className="">
+                <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="email" required/>
+            </div>  
+        </div>
+        <div className="form-group my-3">
+            <div className="">
+                <input type="password" name="password" className="form-control" id="password" placeholder="Password" required/>
+            </div>  
+        </div>
+        <div className="form-group my-3">
+            <div className="">
+                <input type="password" name="password2" className="form-control" id="confirmpassword" placeholder="Password Again" required/>
+            </div>  
+        </div>
+        <button type="submit" className="btn btn-primary float-right">Register</button>
+  </form>        
+        </div>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

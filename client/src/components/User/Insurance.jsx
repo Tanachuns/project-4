@@ -29,7 +29,7 @@ const Insutance = () => {
           <td>{item.destination}</td>
           <td>{item.return_date[0]}</td>
           <td>{item.deperture_date[0]}</td>
-          <td>{item.payment_status.toString()}</td>
+          <td>{item.payment_status?"Succeeded":"Processing"}</td>
         </tr>)
     })
     return ( <>
