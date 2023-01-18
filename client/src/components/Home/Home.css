@@ -1,11 +1,13 @@
 .home-banner{
     max-width: 100%;
     height: 400px;
-    background: #ff7f50;
+    background: #FF9A75;
     background-repeat: no-repeat;
     background-size: cover;
     
 }
+
+
 
 .row{
     height: 100%;

@@ -27,7 +27,12 @@ const Register = (props) => {
     {
       pending: 'Working🔧',
       success: 'Success 👌',
-      error: 'Something went wrong, Try Again',
+      error: {
+        render({data}){
+          // When the promise reject, data will contains the error
+          return data.response.data.filed+" is already exists."
+        }
+      },
     },{
       position: toast.POSITION.TOP_CENTER
     }
@@ -35,6 +40,12 @@ const Register = (props) => {
         localStorage.setItem("jwt", res.data.token);
         props.onHide()
       })
+    }
+    else{
+      toast.error("Password do not match.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000
+      });
     }
   }
 
@@ -65,7 +76,7 @@ const Register = (props) => {
         </datalist>
       </div>
       <div className="form-group">
-         <label htmlFor="first_name">Firstname</label>
+         <label htmlFor="first_name">*Firstname</label>
         <input type="text" className="form-control" name='first_name' id="first_name" placeholder="Enter Firstname" required />
       </div>
       <div className="form-group">
@@ -89,7 +100,7 @@ const Register = (props) => {
         <input type="text" className="form-control" name='phone_number' id="phone_number" placeholder="(XX)X-XXX-XXXX" />
       </div>
     <div className="form-group">
-      <label htmlFor="email">Email address</label>
+      <label htmlFor="email">*Email address</label>
       <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required/>
       <small id="emailHelp" className="form-text text-muted">
         We'll never share your email with anyone else.
@@ -97,11 +108,11 @@ const Register = (props) => {
     </div>
     
     <div className="form-group">
-      <label htmlFor="password">Password</label>
+      <label htmlFor="password">*Password</label>
       <input type="password" name="password" className="form-control" id="password" placeholder="Password" required/>
     </div>
     <div className="form-group">
-      <label htmlFor="confirmpassword">Confirm Password</label>
+      <label htmlFor="confirmpassword">*Confirm Password</label>
       <input type="password" name="password2" className="form-control" id="confirmpassword" placeholder="Password Again" required/>
     </div>
     <br/>

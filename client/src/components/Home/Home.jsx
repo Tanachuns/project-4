@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/esm/Container";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Route, Routes, Link, Navigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 import "./Home.css"
@@ -13,6 +13,13 @@ const Home = () => {
             <Row>
                 <Col>
                     <div className="banner-left">
+                         <img
+                src="./src/images/logo.png"
+                width="100"
+                height="100"
+                className="d-inline-block align-top"
+                alt="React Bootstrap logo"
+              />
                         <h1><b>Come Fly With Me</b></h1>
                         <h3>Come Fine with me</h3>
                     </div>
@@ -22,7 +29,6 @@ const Home = () => {
                         <Link to="/plan" ><button className="btn btn-success" type="button">Buy now</button></Link>
                     </div>
                 </Col>
-            
             
             </Row>
             </div>

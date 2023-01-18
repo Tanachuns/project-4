@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient, Prisma } = require("@prisma/client");
 const jwt = require("jsonwebtoken");
 const prisma = new PrismaClient();
 
@@ -31,10 +31,13 @@ const register = (req, res) => {
         res.status(201).json(data);
       })
       .catch((e) => {
-        res.status(500).json({
-          message: "No resource is created.",
-          error: e.message,
-        });
+        if (e instanceof Prisma.PrismaClientKnownRequestError) {
+          res.status(500).json({
+            message: "Duplicate",
+            error: e.message,
+            filed: e.meta.target,
+          });
+        }
       });
   });
 };
