@@ -9,12 +9,13 @@ import Loading from "../Loainding/Loading";
 
 const Insutance = () => {
     const [insurance,setInsuence] = React.useState([])
-    const user = jwt_decode(localStorage.getItem('jwt'));
+    const user = jwt_decode(JSON.parse(localStorage.getItem('jwt')).value);
     const [isLoading,setIsLoading] = React.useState(true)
 
     React.useEffect(()=>{
         axios.get(process.env.REACT_APP_URL+"/user/insurance/"+user.id,{
-            headers: {'Authorization': 'Bearer '+localStorage.getItem('jwt')}
+            headers: {'Authorization': 'Bearer '+ JSON.parse(localStorage.getItem('jwt')).value
+}
         }).then((res)=>{
             setInsuence(res.data.insurance)
             

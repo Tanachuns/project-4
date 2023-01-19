@@ -10,12 +10,12 @@ import Loading from "../Loainding/Loading";
 
 
 const Detail = () => {
-    const user = jwt_decode(localStorage.getItem('jwt'));
+    const user = jwt_decode(JSON.parse(localStorage.getItem('jwt')).value);
     const [userDetail,setUserDetail] = React.useState({})
     const [isLoading,setIsLoading] = React.useState(true)
     React.useEffect(()=>{
         axios.get(process.env.REACT_APP_URL+"/user/"+user.id,{
-            headers: {'Authorization': 'Bearer '+localStorage.getItem('jwt')}
+            headers: {'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('jwt')).value}
         }).then((res)=>{
             setUserDetail(res.data)
         }).then(()=>{
@@ -40,7 +40,8 @@ const Detail = () => {
       delete userDetail.password2
       toast.promise(
       axios.post(process.env.REACT_APP_URL + "/user/"+user.id+"/update", userDetail,{
-            headers: {'Authorization': 'Bearer '+localStorage.getItem('jwt')}
+            headers: {'Authorization': 'Bearer '+   JSON.parse(localStorage.getItem('jwt')).value
+}
         }),
     {
       pending: 'Working🔧',
@@ -50,7 +51,10 @@ const Detail = () => {
       position: toast.POSITION.TOP_CENTER
     }
   ).then((res) => {
-        localStorage.setItem('jwt',res.data.token)
+        localStorage.setItem('jwt',JSON.stringify({
+          value:res.data.token,
+          exp:new Date().getTime() + res.data.expiresIn
+        }))
         delete res.data.token
         delete res.data.expireIn
         setUserDetail(res.data)

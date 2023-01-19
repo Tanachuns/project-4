@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
     
 
 const Auth = () => {
-            const user = jwt_decode(localStorage.getItem('jwt'));
+            const user = jwt_decode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiU3RhcmsiLCJpZCI6MSwiaXNfYWRtaW4iOnRydWUsImlhdCI6MTY3NDEyOTA0MywiZXhwIjoxNjc0MTMyNjQzfQ.3jrUgzjOmKHUUi2C4EWXfJQRUgLqtn45IR57KjcrUzM");
              const logoutSuccess = () =>{
               console.log("test");
               toast.success("Success", {

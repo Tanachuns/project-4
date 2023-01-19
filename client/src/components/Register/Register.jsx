@@ -8,13 +8,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Register = (props) => {
   const [regdata,setRegData] = React.useState({})
+  
   const submitHandler = (e) => {
     e.preventDefault()
     setRegData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    
   };
 
   const regHandler = (e)=>{
@@ -36,7 +36,10 @@ const Register = (props) => {
       position: toast.POSITION.TOP_CENTER
     }
   ).then((res) => {
-        localStorage.setItem("jwt", res.data.token);
+        localStorage.setItem("jwt", JSON.stringify({
+          value:res.data.token,
+          exp:new Date().getTime() + res.data.expiresIn
+        }));
         props.onHide()
       })
     }

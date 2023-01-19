@@ -29,7 +29,10 @@ function Login(props) {
       position: toast.POSITION.TOP_CENTER
     }
   ).then((res) => {
-        localStorage.setItem("jwt", res.data.token);
+        localStorage.setItem("jwt",JSON.stringify({
+          value:res.data.token,
+          exp:new Date().getTime() + 300
+        }));
         props.onHide()
       })
   }

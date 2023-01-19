@@ -12,14 +12,36 @@ import Payment  from "./Payment";
 const Plan = () => {
     const [step,setStep] = React.useState(0)
     const [country,setCountry] = React.useState([])
-    const pages = [<Itinerary country={country} />,<Package/>,<SubmitPlan/>,<Payment/>]
+    const [plan,setPlan] = React.useState({})
     
     React.useEffect(()=>{
       axios.get("https://restcountries.com/v3.1/all").then(res=>{
         setCountry(res.data)
       })
     },[])
-     
+
+    const submitHandler = (e) => {
+    e.preventDefault()
+    setPlan((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+    const nextHandler = (e)=>{
+      e.preventDefault()
+      console.log(plan);
+      
+      setStep(prev=>prev+=1)
+    }
+    
+
+    const pages = [
+    <Itinerary country={country} next={(e)=>nextHandler(e)} change={(e)=>submitHandler(e)} plan={plan}/>,
+    <Package/>,
+    <SubmitPlan/>,
+    <Payment/>]
+
 
     return ( <>
     <Container>
