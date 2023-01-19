@@ -15,7 +15,7 @@ import Auth from "./Auth"
 function NavbarComp() {
   const [isLoggedIn,setIsLoggedIn] = React.useState(false)
   const [isReg,setIsReg] = React.useState(false)
-  const [isAuth,setIsAuth] = React.useState(JSON.parse(localStorage.getItem('jwt'))!==null)
+  const [isAuth,setIsAuth] = React.useState(JSON.parse(localStorage.getItem('jwt')).value!==null)
   const jwt = localStorage.getItem("jwt")
 
  
