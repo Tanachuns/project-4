@@ -36,7 +36,7 @@ const Insutance = () => {
           <th>Plan</th>
           <th>Price</th>
           <th>Destination</th>
-          <th>Deperture Date</th>
+          <th>Departure Date</th>
           <th>Return Date</th>
           <th>Payment Status</th>
         </tr>

@@ -8,8 +8,13 @@ body {
 
 }
 
+main{
+  min-height: 60vh;
+}
+
 html{
   height: -webkit-fill-available;
+  background-color: #212529;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
