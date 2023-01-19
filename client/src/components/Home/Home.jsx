@@ -3,9 +3,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {Link} from "react-router-dom";
 
-
 import "./Home.css"
-import HomeCard from "./HomeCard";
+import CardComp from "../CardComp/CardComp";
 
 const Home = () => {
     return (<>
@@ -35,12 +34,7 @@ const Home = () => {
             <br/>
             <Container>
                 <h2>Plans</h2>
-                <Row>
-                        <HomeCard/>
-                        <HomeCard/>
-                        <HomeCard/>
-                        <HomeCard/>
-                </Row>
+                
                 <h2>Ads</h2>
                 <Row>
                          <img src="https://www.wordstream.com/wp-content/uploads/2021/07/persuasive-ads-coca-cola-1.jpg" alt="" />

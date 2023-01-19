@@ -49,12 +49,10 @@ const login = (req, res) => {
       },
     })
     .then((data) => {
-      console.log(data);
       if (data !== null) {
         return bcrypt
           .compare(req.body.password, data.password)
           .then((result) => {
-            console.log(result);
             if (!result) {
               res.status(401).json({
                 message: "Authentication failed",

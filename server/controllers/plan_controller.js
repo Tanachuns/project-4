@@ -2,7 +2,11 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const getAllPlan = (req, res) => {
   prisma.plan
-    .findMany()
+    .findMany({
+      include: {
+        cover: true,
+      },
+    })
     .then((data) => {
       res.status(200).json(data);
     })

@@ -43,7 +43,7 @@ CREATE TABLE "Insurance" (
     "user_id" INTEGER NOT NULL,
     "total_price" INTEGER,
     "destination" TEXT,
-    "deperture_date" DATE,
+    "departure_date" DATE,
     "return_date" DATE,
     "payment_status" BOOLEAN NOT NULL DEFAULT false,
 

@@ -1,9 +1,9 @@
 import Container from "react-bootstrap/esm/Container";
-import HomeCard from "../Home/HomeCard"
-const Package = () => {
+import CardComp from "../CardComp/CardComp"
+const Package = (props) => {
     return ( <Container>
         <div className="row">
-            <HomeCard/>
+            <CardComp setPlan={props.setPlan} next={props.next} plan={props.plan}/>
         </div>
     </Container>  );
 }

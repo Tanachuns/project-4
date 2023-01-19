@@ -18,25 +18,14 @@ const Insutance = () => {
 }
         }).then((res)=>{
             setInsuence(res.data.insurance)
-            
         }).then(()=>{
             setIsLoading(false)
+        }).catch(e=>{
+          console.log(e);
         })
     },[user.id])
-    console.log(insurance);
-    const insurElement = insurance.map((item,index)=>{
-        item.return_date = item.return_date.split("T")
-        item.deperture_date = item.deperture_date.split("T")
-        return (<tr key={index}>
-          <td>{item.id}</td>
-          <td>{item.plan.name}</td>
-          <td>{item.total_price}</td>
-          <td>{item.destination}</td>
-          <td>{item.return_date[0]}</td>
-          <td>{item.deperture_date[0]}</td>
-          <td>{item.payment_status?"Succeeded":"Processing"}</td>
-        </tr>)
-    })
+    
+
     return ( <>
    {isLoading?<Loading/>: <Container>
         <h1>My Insurance</h1>
@@ -53,7 +42,18 @@ const Insutance = () => {
         </tr>
       </thead>
       <tbody>
-            {insurElement}
+            
+    {insurance.map((item,index)=>{
+        return (<tr key={index}>
+          <td>{item.id}</td>
+          <td>{item.plan.name}</td>
+          <td>{item.total_price}</td>
+          <td>{item.destination}</td>
+          <td>{item.departure_date.split("T")[0]}</td>
+          <td>{item.return_date.split("T")[0]}</td>
+          <td>{item.payment_status?"Succeeded":"Processing"}</td>
+        </tr>)
+    })}
       </tbody>
     </Table>        
     </Container>}

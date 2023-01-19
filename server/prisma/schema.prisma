@@ -52,7 +52,7 @@ model Insurance {
   user_id Int
   total_price Int?
   destination String?
-  deperture_date DateTime? @db.Date
+  departure_date DateTime? @db.Date
   return_date DateTime? @db.Date
   payment_status Boolean @default(false)
 }

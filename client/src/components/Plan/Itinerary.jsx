@@ -10,7 +10,7 @@ const Itinerary = (props) => {
                 <form method="post" onChange={(e)=>props.change(e)} onSubmit={(e)=>props.next(e)}>
                     <div className="form-group my-3 text-start row">
                     <label htmlFor="formGroupExampleInput">Destination</label>
-                    <select className="form-select" aria-label="Default select example" name="destination" defaultValue={props.plan.destination}>
+                    <select className="form-select" aria-label="Default select example" name="destination" defaultValue={props.plan.destination} required>
                         <option selected disabled>Select Your Destination</option>
                         {countries}
                     </select>
@@ -18,15 +18,15 @@ const Itinerary = (props) => {
                     <div className="form-group my-3 text-start row">
                         <label className="align-start" htmlFor="formGroupExampleInput">Departure Date</label>
                         <div className="col">
-                            <input type="date" className="form-control" name='departure_date' value={props.plan.departure_date}/>
+                            <input type="date" className="form-control" name='departure_date' value={props.plan.departure_date} required/>
                         </div>  
                         <div className="col">
-                            <input type="date" className="form-control" name='return_date' value={props.plan.return_date}/>
+                            <input type="date" className="form-control" name='return_date' value={props.plan.return_date} required/>
                         </div>  
                     </div>
                      <div className="form-group my-3 row text-start">
                     <label htmlFor="">Type of travel</label>
-                    <select className="form-select" aria-label="Default select example" name="type" value={props.plan.type}>
+                    <select className="form-select" aria-label="Default select example" name="type" value={props.plan.type} required>
                         <option selected disabled>Select Your Type of travel</option>
                         <option value="individual">Individual</option>
                         <option value="group">Group</option>
