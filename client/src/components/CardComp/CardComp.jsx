@@ -19,7 +19,10 @@ function CardComp(props) {
             setIsLoading(false)
         })
   },[])
-  const card = cardData.map((item)=>{
+  const card = cardData.filter((item)=>{
+    return item.type === props.plan.type
+  }).map((item)=>{
+    console.log(item);
     return (<Card style={{ width: '18rem' }}>
             <div class="card-header">
               <b>{item.name}</b>
@@ -46,6 +49,7 @@ function CardComp(props) {
             </ul>
         </Card>)
   })
+  console.log("card",card);
   return (<>
    {isLoading?<Loading/>: <Row>
       <Col>

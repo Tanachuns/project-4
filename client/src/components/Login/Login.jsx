@@ -22,7 +22,7 @@ function Login(props) {
     toast.promise(
     axios.post(process.env.REACT_APP_URL + "/auth/login", logindata),
     {
-      pending: 'Logging',
+      pending: 'Pending',
       success: 'Success 👌',
       error: 'Email or password is incorrect.',
     },{

@@ -23,7 +23,7 @@ function Payment(props) {
         toast.promise(
         axios.post(process.env.REACT_APP_URL + "/insurance", props.insurance),
     {
-      pending: 'pending',
+      pending: 'Pending',
       success: {onClose: () => window.location.href ="/user/insurance",
         render(){
           return "Success"

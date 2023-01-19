@@ -25,7 +25,7 @@ const Register = (props) => {
       toast.promise(
       axios.post(process.env.REACT_APP_URL + "/auth/register", regdata),
     {
-      pending: 'Working🔧',
+      pending: 'Pending',
       success: 'Success 👌',
       error: {
         render({data}){

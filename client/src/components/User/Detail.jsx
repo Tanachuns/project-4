@@ -44,7 +44,7 @@ const Detail = () => {
 }
         }),
     {
-      pending: 'Working🔧',
+      pending: 'Pending',
       success: 'Success 👌',
       error: "Something went wrong",
     },{
