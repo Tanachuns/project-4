@@ -16,5 +16,3 @@ npx prisma
 
 Flyio
 flyctl deploy
-
-https://restcountries.com/

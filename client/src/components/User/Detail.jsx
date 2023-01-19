@@ -5,17 +5,21 @@ import axios from 'axios'
 import jwt_decode from "jwt-decode";
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loading from "../Loainding/Loading";
 
 
 
 const Detail = () => {
     const user = jwt_decode(localStorage.getItem('jwt'));
     const [userDetail,setUserDetail] = React.useState({})
+    const [isLoading,setIsLoading] = React.useState(true)
     React.useEffect(()=>{
         axios.get(process.env.REACT_APP_URL+"/user/"+user.id,{
             headers: {'Authorization': 'Bearer '+localStorage.getItem('jwt')}
         }).then((res)=>{
             setUserDetail(res.data)
+        }).then(()=>{
+            setIsLoading(false)
         })
     },[user.id])
 
@@ -65,7 +69,7 @@ const Detail = () => {
     
     
     return ( <>
-    <Container >
+    {isLoading?<Loading/>:<Container >
         <h1>My Insurance</h1>
     <div className="d-flex justify-content-center my-5">
     <form onChange={(e)=>{submitHandler(e)}} onSubmit={(e)=>editHandler(e)}>
@@ -123,7 +127,7 @@ const Detail = () => {
         <button type="submit" className="btn btn-warning float-right">Edit</button>
   </form>        
         </div>
-    </Container>
+    </Container>}
     </> );
 }
  

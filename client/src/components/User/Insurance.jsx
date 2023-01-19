@@ -4,25 +4,29 @@ import Table from 'react-bootstrap/Table';
 import React from 'react';
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
+import Loading from "../Loainding/Loading";
 
 
 const Insutance = () => {
     const [insurance,setInsuence] = React.useState([])
     const user = jwt_decode(localStorage.getItem('jwt'));
+    const [isLoading,setIsLoading] = React.useState(true)
 
     React.useEffect(()=>{
         axios.get(process.env.REACT_APP_URL+"/user/insurance/"+user.id,{
             headers: {'Authorization': 'Bearer '+localStorage.getItem('jwt')}
         }).then((res)=>{
             setInsuence(res.data.insurance)
-            console.log(res.data);
+            
+        }).then(()=>{
+            setIsLoading(false)
         })
     },[user.id])
     console.log(insurance);
-    const insurElement = insurance.map((item)=>{
+    const insurElement = insurance.map((item,index)=>{
         item.return_date = item.return_date.split("T")
         item.deperture_date = item.deperture_date.split("T")
-        return (<tr>
+        return (<tr key={index}>
           <td>{item.id}</td>
           <td>{item.plan.name}</td>
           <td>{item.total_price}</td>
@@ -33,7 +37,7 @@ const Insutance = () => {
         </tr>)
     })
     return ( <>
-    <Container>
+   {isLoading?<Loading/>: <Container>
         <h1>My Insurance</h1>
         <Table striped bordered hover>
       <thead>
@@ -51,7 +55,7 @@ const Insutance = () => {
             {insurElement}
       </tbody>
     </Table>        
-    </Container>
+    </Container>}
     </> );
 }
  
