@@ -17,7 +17,7 @@ const Insutance = () => {
             setInsuence(res.data.insurance)
             console.log(res.data);
         })
-    },[])
+    },[user.id])
     console.log(insurance);
     const insurElement = insurance.map((item)=>{
         item.return_date = item.return_date.split("T")

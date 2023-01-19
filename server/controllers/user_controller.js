@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const getAllUser = (req, res) => {
@@ -68,7 +69,22 @@ const createUser = (req, res) => {
         data: req.body,
       })
       .then((data) => {
-        res.status(201).json(data);
+        let jwtToken = jwt.sign(
+          {
+            name: data.first_name,
+            id: data.id,
+            is_admin: data.is_admin,
+          },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: "1h",
+          }
+        );
+        res.status(201).json({
+          ...data,
+          token: jwtToken,
+          expiresIn: 3600,
+        });
       })
       .catch((e) => {
         res.status(500).json({
@@ -88,7 +104,22 @@ const updateUser = (req, res) => {
       data: req.body,
     })
     .then((data) => {
-      res.status(201).json(data);
+      let jwtToken = jwt.sign(
+        {
+          name: data.first_name,
+          id: data.id,
+          is_admin: data.is_admin,
+        },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "1h",
+        }
+      );
+      res.status(200).json({
+        ...data,
+        token: jwtToken,
+        expiresIn: 3600,
+      });
     })
     .catch((e) => {
       res.status(500).json({

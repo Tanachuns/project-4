@@ -23,12 +23,11 @@ const register = (req, res) => {
             expiresIn: "1h",
           }
         );
-        res.status(200).json({
+        res.status(201).json({
           ...data,
           token: jwtToken,
           expiresIn: 3600,
         });
-        res.status(201).json(data);
       })
       .catch((e) => {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {

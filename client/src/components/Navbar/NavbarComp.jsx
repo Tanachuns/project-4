@@ -21,7 +21,6 @@ function NavbarComp() {
  
 
   React.useEffect(()=>{
-    console.log(localStorage.getItem('jwt'));
     if(localStorage.getItem('jwt')){
       setIsAuth(true)
     }
@@ -29,7 +28,6 @@ function NavbarComp() {
       setIsAuth(false)
    }
   },[jwt])
-   console.log(isAuth);
             
   let authElement = (<><Nav.Link onClick={(e)=>{
     e.preventDefault() 

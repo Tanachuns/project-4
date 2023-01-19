@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
     
 
 const Auth = () => {
-  
             const user = jwt_decode(localStorage.getItem('jwt'));
              const logoutSuccess = () =>{
               console.log("test");
@@ -34,7 +33,7 @@ const Auth = () => {
                 localStorage.removeItem("jwt")
                 logoutSuccess()
                 setTimeout(() => {
-                  window.location.reload(false);
+                  window.location.href='/';
                 }, 2000);
               }
                 }>

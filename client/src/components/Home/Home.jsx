@@ -21,7 +21,7 @@ const Home = () => {
                 alt="React Bootstrap logo"
               />
                         <h1><b>Come Fly With Me</b></h1>
-                        <h3>Come Fine with me</h3>
+                        <h3>You're Fine with me</h3>
                     </div>
                 </Col>
                 <Col>

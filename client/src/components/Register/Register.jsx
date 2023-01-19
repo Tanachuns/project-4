@@ -62,10 +62,10 @@ const Register = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div className="col-md-6 m-auto">
+        <div className="col-md-8 m-auto">
         <form onChange={(e)=>{submitHandler(e)}} onSubmit={(e)=>regHandler(e)}>
-        <div className="form-group row my-3" style={{maxHeight:"10%"}}>
-            <div className="col-3">
+        <div className="form-group row g-3 my-3" style={{maxHeight:"10%"}}>
+            <div className="col">
                 <input type="text" className="form-control" list="title" placeholder='Title' name='title' />
                 <datalist id="title">
                 <option>Mr.</option>
@@ -73,10 +73,10 @@ const Register = (props) => {
                 <option>Mrs.</option>
                 </datalist>
             </div>    
-            <div className="col-4">
+            <div className="col">
                 <input type="text" className="form-control" name='first_name' id="first_name" placeholder="Firstname" required />
             </div>
-            <div className="col-5">
+            <div className="col">
             <input type="text" className="form-control" name='last_name' id="last_name" placeholder="Lastname" />
             </div>
         </div>
