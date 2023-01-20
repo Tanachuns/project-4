@@ -65,9 +65,14 @@ function Login(props) {
              <input type="password" name="password" className="form-control" id="password" placeholder="Password" />
            </div>
            <br/>
+           
            <button type="submit" className="btn btn-primary float-right">
              Login
            </button>
+           <p >or <section style={{color:"blue"}} onClick={()=>{
+            props.onHide()
+           props.reg()
+            }}>register</section></p>
          </form>
        </div>
       </Modal.Body>

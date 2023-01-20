@@ -65,7 +65,7 @@ function NavbarComp() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    <Login show={isLoggedIn} onHide={() => setIsLoggedIn(false)}/>
+    <Login reg={() => setIsReg(true)} show={isLoggedIn} onHide={() => setIsLoggedIn(false)}/>
     <Register show={isReg} onHide={() => setIsReg(false)}/>
     </>
   )
