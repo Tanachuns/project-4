@@ -49,11 +49,13 @@ function CardComp(props) {
             </ul>
         </Card>)
   })
+  console.log(cardData);
   console.log("card",card);
   return (<>
    {isLoading?<Loading/>: <Row>
       <Col>
-       {card}
+       
+       {card.length===0?<p>No plan for your type of travel.</p>:card}
       </Col>
     </Row>
   }

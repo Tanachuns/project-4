@@ -6,16 +6,14 @@ import { toast } from 'react-toastify';
 
 const Summary = (props) => {
   const [isShowPayment,setIsShowPayment] = React.useState(false)
-
     const confirmHandler = ()=>{
-          if(isNaN(props.plan.total_price)){
+          if(props.plan.price===undefined){
               toast.warn("Choose Your Plan First.",{
       position: toast.POSITION.TOP_CENTER
     })
             }
           else{
             console.log("props",props.plan.total_price);
-
             setIsShowPayment(true)
           }
           }
