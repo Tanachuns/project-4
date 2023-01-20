@@ -2,11 +2,30 @@ import Container from "react-bootstrap/esm/Container";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {Link} from "react-router-dom";
+import React from 'react';
+
 
 import "./Home.css"
-import CardComp from "../CardComp/CardComp";
+import Login from "../Login/Login"
 
 const Home = () => {
+  const [isLoggedIn,setIsLoggedIn] = React.useState(false)
+  const [isAuth,setIsAuth] = React.useState(JSON.parse(localStorage.getItem('jwt'))!==null)
+  const jwt = localStorage.getItem("jwt")
+ React.useEffect(()=>{
+    if(jwt){
+      if(jwt.exp< new Date()){
+        localStorage.removeItem('jwt')
+      }
+      else{
+        setIsAuth(true)
+      }
+    }
+    else{
+      setIsAuth(false)
+   }
+  },[jwt])
+
     return (<>
         <div className="home-banner">
             <Row>
@@ -25,7 +44,13 @@ const Home = () => {
                 </Col>
                 <Col>
                     <div className="banner-right">
-                        <Link to="/plan" ><button className="btn btn-success" type="button">Buy now</button></Link>
+                         {isAuth? <Link to="/plan" ><button className="btn btn-success" type="button">Buy now</button></Link>:
+                         <button onClick={(e)=>{
+                            e.preventDefault() 
+                            setIsLoggedIn(true)}
+                            }  className="btn btn-success" type="button">Buy now</button>}
+                       
+                        
                     </div>
                 </Col>
             
@@ -40,6 +65,8 @@ const Home = () => {
                          <img src="https://www.wordstream.com/wp-content/uploads/2021/07/persuasive-ads-coca-cola-1.jpg" alt="" />
                 </Row>
             </Container>
+            <Login show={isLoggedIn} onHide={() => setIsLoggedIn(false)}/>
+
             </>
       );
 }

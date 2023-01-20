@@ -3,7 +3,6 @@ import Modal from 'react-bootstrap/Modal';
 import QRCode from 'qrcode.react';
 
 import React from 'react';
-import { redirect } from "react-router-dom";
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,7 +15,7 @@ function Payment(props) {
     const amount = props.insurance.price+(props.insurance.price*0.1)
     const promptPay = generatePayload("0819478436",  {amount})
     const doneHandler = ()=>{
-        props.insurance.total_price = amount
+          props.insurance.total_price = amount
         delete props.insurance.name
         delete props.insurance.price
         delete props.insurance.type
@@ -28,12 +27,17 @@ function Payment(props) {
         render(){
           return "Success"
         }},
-      error: 'Something went wrong.',
+      error: {onClose: () => props.onHide(),
+        render(){
+          return 'Something went wrong.'
+        }}
+      
     },{
       position: toast.POSITION.TOP_CENTER
     }
   )
-  }
+        }
+  
     
   return (
     <>
@@ -56,7 +60,7 @@ function Payment(props) {
     </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button className="btn-success" onClick={()=>doneHandler()}>Buy</Button>
+        <Button className="btn-success" onClick={()=>doneHandler()}>Confirm</Button>
       </Modal.Footer>
     </Modal>
     </>

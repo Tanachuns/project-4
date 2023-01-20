@@ -1,13 +1,23 @@
 import Container from "react-bootstrap/esm/Container";
 import Payment from "./Payment";
 import React from 'react';
+import { toast } from 'react-toastify';
 
 
 const Summary = (props) => {
   const [isShowPayment,setIsShowPayment] = React.useState(false)
 
     const confirmHandler = ()=>{
+          if(isNaN(props.plan.total_price)){
+              toast.warn("Choose Your Plan First.",{
+      position: toast.POSITION.TOP_CENTER
+    })
+            }
+          else{
+            console.log("props",props.plan.total_price);
+
             setIsShowPayment(true)
+          }
           }
    
     return (<> <Container>
@@ -75,7 +85,7 @@ const Summary = (props) => {
             </tr>
           </tbody>
         </table>
-        <button onClick={()=>confirmHandler()} className="btn btn-success" type="button">Confirm</button>
+        <button onClick={()=>confirmHandler()} className="btn btn-success" type="button">Payment</button>
         </div>
         
     </Container> 
