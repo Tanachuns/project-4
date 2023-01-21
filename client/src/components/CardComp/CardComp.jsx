@@ -51,8 +51,6 @@ function CardComp(props) {
         </Col>
 )
   })
-  console.log(cardData);
-  console.log("card",card);
   return (<>
    {isLoading?<Loading/>: <Row>
 

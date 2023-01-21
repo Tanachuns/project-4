@@ -11,7 +11,6 @@ const generatePayload = require('promptpay-qr');
 
 
 function Payment(props) {
-    console.log(props.insurance);
     const amount = props.insurance.price+(props.insurance.price*0.1)
     const promptPay = generatePayload("0819478436",  {amount})
     const doneHandler = ()=>{

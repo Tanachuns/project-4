@@ -42,7 +42,6 @@ const crateInsurance = async (req, res) => {
   req.body.return_date = new Date(req.body.return_date);
   req.body.payment_status = false;
 
-  console.log(req.body, req.body.return_date, req.body.departure_date);
   prisma.insurance
     .create({
       data: req.body,
@@ -51,7 +50,6 @@ const crateInsurance = async (req, res) => {
       res.status(201).json(data);
     })
     .catch((e) => {
-      console.log(req.body);
       res.status(500).json({
         message: "No resource is created.",
         error: e.message,

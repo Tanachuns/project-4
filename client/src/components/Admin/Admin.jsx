@@ -16,7 +16,6 @@ import { toast } from 'react-toastify';
 
 const Admin = () => {
     const user = jwt_decode(JSON.parse(localStorage.getItem('jwt')).value);
-    console.log(user.is_admin);
     const [page,setPage] = React.useState(0)
     const [state,setState] = React.useState({page:0,url:"/user"})
     const [isAuth,setIsAuth] = React.useState(JSON.parse(localStorage.getItem('jwt'))!==null&&user.is_admin)
@@ -30,7 +29,6 @@ const Admin = () => {
     })
     
     React.useEffect(()=>{
-        console.log(state);
          axios.get(process.env.REACT_APP_URL+state.url,{
             headers: {'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('jwt')).value}
         }).then((res)=>{

@@ -26,6 +26,29 @@ const UserDash = (props) => {
   )
     }
 
+    const setAdmin= (id) =>{
+      toast.promise(
+      axios.post(process.env.REACT_APP_URL + "/user/"+id+"/update",{
+        is_admin:true
+      },{
+            headers: {'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('jwt')).value}
+        }),
+    {
+      pending: 'Pending',
+      success: {onClose: () => window.location.reload(false),
+        render(){
+          return "Success"
+        }},
+      error: {
+        render(){
+          return 'Something went wrong.'
+        }}
+    },{
+      position: toast.POSITION.TOP_CENTER
+    })
+  }
+    
+
     const th = Object.keys(props.data[0]).map((item)=>{
         return <th scope="col">{item}</th>
     })
@@ -49,6 +72,13 @@ const UserDash = (props) => {
         func: ()=>deleteRow(item.id)
       })
         } className="btn btn-danger" type="button">Delete</button></td>
+        <td><button onClick={
+        ()=>props.showModal({
+        name:"Confirm Set Admin",
+        desc:"Set id "+item.id+" to be Admin?",
+        func: ()=>setAdmin(item.id)
+      })
+        } className="btn btn-warning" type="button">Set Admin</button></td>
 
     </tr>
     })
@@ -59,6 +89,9 @@ const UserDash = (props) => {
     <tr>
       {th}
       <th>delete</th>
+      <th>Set Admin</th>
+
+      
     </tr>
   </thead>
   <tbody>

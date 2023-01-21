@@ -13,7 +13,6 @@ const Summary = (props) => {
     })
             }
           else{
-            console.log("props",props.plan.total_price);
             setIsShowPayment(true)
           }
           }
