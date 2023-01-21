@@ -21,7 +21,6 @@ const Insutance = () => {
         }).then(()=>{
             setIsLoading(false)
         }).catch(e=>{
-          console.log(e);
         })
     },[user.id])
     
