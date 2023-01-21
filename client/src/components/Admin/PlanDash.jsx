@@ -7,13 +7,19 @@ const PlanDash = (props) => {
 
      const deleteRow = (id) =>{
       toast.promise(
-      axios.post(process.env.REACT_APP_URL + "/user/"+id+"/delete",id,{
+      axios.post(process.env.REACT_APP_URL + "/plan/"+id+"/delete",id,{
             headers: {'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('jwt')).value}
-        }).catch(e=>console.log(e)),
+        }),
     {
       pending: 'Pending',
-      success: 'Success 👌',
-      error: "Something went wrong",
+      success: {onClose: () => window.location.reload(false),
+        render(){
+          return "Success"
+        }},
+      error: {
+        render(){
+          return 'Something went wrong.'
+        }}
     },{
       position: toast.POSITION.TOP_CENTER
     }
@@ -31,12 +37,18 @@ const PlanDash = (props) => {
       <td>{item.plan_price}</td>
       <td>{item.unit}</td>
       <td>{item.cover!==undefined&&item.cover.map(item=>item.id+",")}</td>
-      <td><button onClick={()=>deleteRow(item.id)} className="btn btn-danger" type="button">Delete</button></td>
+      <td><button onClick={
+        ()=>props.showModal({
+        name:"Confirm Delete",
+        desc:"Delete id "+item.id,
+        func: ()=>deleteRow(item.id)
+      })
+        } className="btn btn-danger" type="button">Delete</button></td>
     </tr>
     })
     return ( <>
     <h1>Plan</h1>
-    <table class="table">
+    <table className="table">
   <thead>
     <tr>
       {th}

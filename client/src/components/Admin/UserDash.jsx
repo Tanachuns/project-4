@@ -9,11 +9,17 @@ const UserDash = (props) => {
       toast.promise(
       axios.post(process.env.REACT_APP_URL + "/user/"+id+"/delete",id,{
             headers: {'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('jwt')).value}
-        }).catch(e=>console.log(e)),
+        }),
     {
       pending: 'Pending',
-      success: 'Success 👌',
-      error: "Something went wrong",
+      success: {onClose: () => window.location.reload(false),
+        render(){
+          return "Success"
+        }},
+      error: {
+        render(){
+          return 'Something went wrong.'
+        }}
     },{
       position: toast.POSITION.TOP_CENTER
     }
@@ -31,18 +37,24 @@ const UserDash = (props) => {
       <th scope="row">{item.first_name}</th>
       <th scope="row">{item.last_name}</th>
       <th scope="row">{item.citizen_id}</th>
-      <th scope="row">{item.birth_date!==null&&item.birth_date.split("T")[0]}</th>
+      <th scope="row">{item.birth_date!==undefined&&item.birth_date!==null&&item.birth_date.split("T")[0]}</th>
       <th scope="row">{item.address}</th>
       <th scope="row">{item.phone_number}</th>
       <th scope="row">-</th>
       <th scope="row">{item.is_admin?"true":"false"}</th>
-      <td><button onClick={()=>deleteRow(item.id)} className="btn btn-danger" type="button">Delete</button></td>
+      <td><button onClick={
+        ()=>props.showModal({
+        name:"Confirm Delete",
+        desc:"Delete id "+item.id,
+        func: ()=>deleteRow(item.id)
+      })
+        } className="btn btn-danger" type="button">Delete</button></td>
 
     </tr>
     })
     return ( <>
     <h1>Users</h1>
-    <table class="table">
+    <table className="table">
   <thead>
     <tr>
       {th}

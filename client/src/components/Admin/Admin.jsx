@@ -48,8 +48,14 @@ const Admin = () => {
          }),
     {
       pending: 'Pending',
-      success: 'Success 👌',
-      error: 'Something went wrong.',
+      success: {onClose: () => window.location.reload(false),
+        render(){
+          return "Success"
+        }},
+      error: {onClose: () =>window.location.reload(false),
+        render(){
+          return 'Something went wrong.'
+        }}
     },{
       position: toast.POSITION.TOP_CENTER
     }
@@ -66,10 +72,10 @@ const Admin = () => {
     }
 
     const pages = [
-    <UserDash data={data}/>,
+    <UserDash showModal={(inp)=>showModal(inp)} data={data}/>,
     <PaymentDash showModal={(inp)=>showModal(inp)} confirmPayment={(data)=>{confirmPayment(data)}} data={data}/>,
-    <PlanDash data={data}/>,
-    <CoverDash data={data}/>
+    <PlanDash showModal={(inp)=>showModal(inp)} data={data}/>,
+    <CoverDash showModal={(inp)=>showModal(inp)} data={data}/>
     ]
 
     return (<>{isAuth?<div className="row m-0" style={{height:"100vh"}} >

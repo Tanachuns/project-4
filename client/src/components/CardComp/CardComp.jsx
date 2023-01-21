@@ -24,16 +24,16 @@ function CardComp(props) {
   }).map((item)=>{
     return (      <Col>
       <Card style={{ width: '18rem' }}>
-            <div class="card-header">
+            <div className="card-header">
               <b>{item.name}</b>
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Type: {item.type}</li>
-              <li class="list-group-item">Price : {item.plan_price}/{item.unit}</li>
-              <li class="list-group-item">Coverage</li>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">Type: {item.type}</li>
+              <li className="list-group-item">Price : {item.plan_price}/{item.unit}</li>
+              <li className="list-group-item">Coverage</li>
 
               {item.cover.map((item)=>{
-                return <li class="list-group-item">{item.detail} {item.coverage} THB</li>
+                return <li className="list-group-item">{item.detail} {item.coverage} THB</li>
               })}
               <Button onClick={()=>{
                 props.setPlan(() => ({
@@ -45,7 +45,7 @@ function CardComp(props) {
                 )
                 props.next()
               }}>Choose</Button>
-              <li class="list-group-item"></li>
+              <li className="list-group-item"></li>
             </ul>
         </Card>
         </Col>
