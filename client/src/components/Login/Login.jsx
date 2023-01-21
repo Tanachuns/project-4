@@ -34,6 +34,9 @@ function Login(props) {
           exp:new Date().getTime() + 300
         }));
         props.onHide()
+        setTimeout(() => {
+                  window.location.reload(false);
+                }, 2000);
       })
   }
 
