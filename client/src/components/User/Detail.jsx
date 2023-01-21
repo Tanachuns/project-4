@@ -17,10 +17,11 @@ const Detail = () => {
         axios.get(process.env.REACT_APP_URL+"/user/"+user.id,{
             headers: {'Authorization': 'Bearer '+JSON.parse(localStorage.getItem('jwt')).value}
         }).then((res)=>{
+            console.log("data",res.data);
             setUserDetail(res.data)
         }).then(()=>{
             setIsLoading(false)
-        })
+        }).catch(e=>console.log(e))
     },[user.id])
 
     const submitHandler = (e) => {
@@ -71,7 +72,7 @@ const Detail = () => {
     }
   }
     
-    
+    console.log(userDetail);
     return ( <>
     {isLoading?<Loading/>:<Container >
         <h1>My Insurance</h1>

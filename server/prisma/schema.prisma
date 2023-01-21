@@ -38,7 +38,7 @@ model Plan {
 
 model Cover {
   id      Int      @id @default(autoincrement())
-  plan Plan @relation(fields: [plan_id], references: [id])
+  plan Plan @relation(fields: [plan_id], references: [id],onDelete: Cascade)
   plan_id Int
   detail String
   coverage Int?
@@ -48,7 +48,7 @@ model Insurance {
   id      Int      @id @default(autoincrement())
   plan Plan @relation(fields: [plan_id], references: [id])
   plan_id Int
-  user User @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [user_id], references: [id],onDelete: Cascade)
   user_id Int
   total_price Int?
   destination String?

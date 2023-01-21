@@ -8,6 +8,7 @@ import CoverDash from "./CoverDash"
 import axios from 'axios';
 import Loading from '../Loainding/Loading';
 import jwt_decode from "jwt-decode";
+import CustomModal from './CustomModal';
 
 import { toast } from 'react-toastify';
 
@@ -21,6 +22,12 @@ const Admin = () => {
     const [isAuth,setIsAuth] = React.useState(JSON.parse(localStorage.getItem('jwt'))!==null&&user.is_admin)
     const [isLoading,setIsLoading] = React.useState(true)
     const [data,setData] = React.useState([])
+    const [isShow,setIsShow] = React.useState(false)
+    const [showData,setShowData] = React.useState({
+        name:"",
+        desc:"",
+        confirm:()=>{}
+    })
     
     React.useEffect(()=>{
         console.log(state);
@@ -49,9 +56,18 @@ const Admin = () => {
         )
     }
 
+    const showModal = (inp)=>{
+        setShowData({
+        name:inp.name,
+        desc:inp.desc,
+        confirm:()=>inp.func
+    })
+        setIsShow(true)
+    }
+
     const pages = [
     <UserDash data={data}/>,
-    <PaymentDash confirmPayment={(data)=>{confirmPayment(data)}} data={data}/>,
+    <PaymentDash showModal={(inp)=>showModal(inp)} confirmPayment={(data)=>{confirmPayment(data)}} data={data}/>,
     <PlanDash data={data}/>,
     <CoverDash data={data}/>
     ]
@@ -63,7 +79,9 @@ const Admin = () => {
         <div className="col-10 p-3" style={{height:"100%"}}>
              {isLoading?<Loading/>:pages[state.page]}
         </div>
-    </div>:<h2 className="text-center">You are not admin.</h2>}</>
+    </div>:<h2 className="text-center">You are not admin.</h2>}
+    <CustomModal showData={showData} show={isShow} onHide={() => setIsShow(false)}/>
+    </>
      );
 }
  

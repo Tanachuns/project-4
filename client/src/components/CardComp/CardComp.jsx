@@ -22,8 +22,8 @@ function CardComp(props) {
   const card = cardData.filter((item)=>{
     return item.type === props.plan.type
   }).map((item)=>{
-    console.log(item);
-    return (<Card style={{ width: '18rem' }}>
+    return (      <Col>
+      <Card style={{ width: '18rem' }}>
             <div class="card-header">
               <b>{item.name}</b>
             </div>
@@ -47,16 +47,17 @@ function CardComp(props) {
               }}>Choose</Button>
               <li class="list-group-item"></li>
             </ul>
-        </Card>)
+        </Card>
+        </Col>
+)
   })
   console.log(cardData);
   console.log("card",card);
   return (<>
    {isLoading?<Loading/>: <Row>
-      <Col>
-       
+
        {card.length===0?<p>No plan for your type of travel.</p>:card}
-      </Col>
+      
     </Row>
   }
   </>);
