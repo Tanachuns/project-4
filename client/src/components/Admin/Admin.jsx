@@ -64,7 +64,8 @@ const Admin = () => {
         setShowData({
         name:inp.name,
         desc:inp.desc,
-        confirm:()=>inp.func
+        confirm:()=>inp.func,
+        button:inp.button
     })
         setIsShow(true)
     }

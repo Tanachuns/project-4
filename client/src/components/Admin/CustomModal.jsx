@@ -24,7 +24,7 @@ function CustomModal(props) {
       <Modal.Body>
           {props.showData.desc}
     <br/>
-        <Button onClick={props.showData.confirm()}>confirm</Button>
+        {!props.showData.button&&<Button onClick={props.showData.confirm()}>confirm</Button>}
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
