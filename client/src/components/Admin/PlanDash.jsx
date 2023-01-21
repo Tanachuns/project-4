@@ -28,12 +28,7 @@ const PlanDash = (props) => {
     }
 
    const editHandler = (e)=>{
-    console.log({
-        name:e.target.name.value,
-        plan_price:e.target.plan_price.value,
-        type:e.target.type.value,
-        unit:e.target.unit.value
-      });
+
       e.preventDefault()
       toast.promise(
       axios.post(process.env.REACT_APP_URL + "/plan/"+e.target.planID.value+"/update", {
@@ -55,12 +50,6 @@ const PlanDash = (props) => {
     }
 
     const createHandler = (e)=>{
-    console.log({
-        name:e.target.name.value,
-        plan_price:e.target.plan_price.value,
-        type:e.target.type.value,
-        unit:e.target.unit.value
-      });
       e.preventDefault()
       toast.promise(
       axios.post(process.env.REACT_APP_URL + "/plan/"+e.target.planID.value, {
@@ -80,7 +69,7 @@ const PlanDash = (props) => {
     }
   )
     }
-
+    
     const th = Object.keys(props.data[0]).map((item)=>{
         return <th scope="col">{item}</th>
     })
@@ -127,7 +116,7 @@ const PlanDash = (props) => {
 </table>
 <button onClick={
         ()=>props.showModal({
-        name:"Edit Plan",
+        name:"Create Plan",
         desc:<PlanForm editHandler={(e)=>createHandler(e)} data={{}}/>,
         func: ()=>{},
         button:true

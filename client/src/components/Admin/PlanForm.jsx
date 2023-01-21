@@ -27,7 +27,7 @@ const PlanForm = (props) => {
                         <option  value="year" >Year</option>
         </select>
         <br/>
-        <input type="submit" value="submit" />
+        <input type="submit" className="btn btn-success" value="submit" />
     </form>
     </> );
 }

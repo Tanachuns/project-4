@@ -1,5 +1,6 @@
 import axios from "axios";
 import {toast } from 'react-toastify';
+import CoverForm from "./CoverForm";
 
 
 const CoverDash = (props) => {
@@ -30,6 +31,47 @@ const CoverDash = (props) => {
         }, 2000);
       })
     }
+
+     const editHandler = (e)=>{
+    console.log(e.target.coverID.value);
+      e.preventDefault()
+      toast.promise(
+      axios.post(process.env.REACT_APP_URL + "/cover/"+e.target.coverID.value+"/update", {
+        plan_id:parseInt(e.target.plan_id.value),
+        coverage:parseInt(e.target.coverage.value),
+        detail:e.target.detail.value,
+      },{
+            headers: {'Authorization': 'Bearer '+   JSON.parse(localStorage.getItem('jwt')).value}
+        }),
+    {
+      pending: 'Pending',
+      success: 'Success 👌',
+      error: "Something went wrong",
+    },{
+      position: toast.POSITION.TOP_CENTER
+    }
+  )
+    }
+
+    const createHandler = (e)=>{
+      e.preventDefault()
+      toast.promise(
+       axios.post(process.env.REACT_APP_URL + "/cover/"+e.target.coverID.value, {
+        plan_id:parseInt(e.target.plan_id.value),
+        coverage:parseInt(e.target.coverage.value),
+        detail:e.target.detail.value,
+      },{
+            headers: {'Authorization': 'Bearer '+   JSON.parse(localStorage.getItem('jwt')).value}
+        }),
+    {
+      pending: 'Pending',
+      success: 'Success 👌',
+      error: "Something went wrong",
+    },{
+      position: toast.POSITION.TOP_CENTER
+    }
+  )
+    }
     
 
 
@@ -42,6 +84,14 @@ const CoverDash = (props) => {
       <td>{item.plan_id}</td>
       <td>{item.detail}</td>
       <td>{item.coverage}</td>
+      <td><button onClick={
+        ()=>props.showModal({
+        name:"Edit Cover",
+        desc:<CoverForm editHandler={(e)=>editHandler(e)} data={item}/>,
+        func: ()=>{},
+        button:true
+      })
+        } className="btn btn-warning" type="button">Edit</button></td>
       <td><button onClick={
         ()=>props.showModal({
         name:"Confirm Delete",
@@ -59,6 +109,7 @@ const CoverDash = (props) => {
   <thead>
     <tr>
       {th}
+      <th>update</th>
       <th>delete</th>
     </tr>
   </thead>
@@ -66,6 +117,14 @@ const CoverDash = (props) => {
     {td}
   </tbody>
 </table>
+<button onClick={
+        ()=>props.showModal({
+        name:"Create Coverage",
+        desc:<CoverForm editHandler={(e)=>createHandler(e)} data={{}}/>,
+        func: ()=>{},
+        button:true
+      })
+        } className="btn btn-success" type="button">Add</button>
     </> );
 }
  
