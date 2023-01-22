@@ -23,8 +23,8 @@ function CardComp(props) {
   const card = cardData.filter((item)=>{
     return item.type === props.plan.type
   }).map((item)=>{
-    return (      <Col>
-      <Card style={{ width: '18rem' }}>
+    return (      <Col className="col-3" style={{overflow:"scroll"}}>
+      <Card style={{ width: '18rem', margin:"1em" }}>
             <div className="card-header">
               <b>{item.name}</b>
             </div>
