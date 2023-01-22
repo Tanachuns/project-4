@@ -33,7 +33,6 @@ const CoverDash = (props) => {
     }
 
      const editHandler = (e)=>{
-    console.log(e.target.coverID.value);
       e.preventDefault()
       toast.promise(
       axios.post(process.env.REACT_APP_URL + "/cover/"+e.target.coverID.value+"/update", {

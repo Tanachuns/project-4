@@ -69,14 +69,14 @@ const Home = () => {
                 </Row>
                 <Row>
                   <h2>FAQ</h2>
-                <div class="accordion" id="accordionExample">
+                <div class="accordion">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         What is travel insurance?
       </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" >
       <div class="accordion-body">
         Travel insurance is a type of insurance that covers unexpected events that may occur during a trip, such as trip cancellation, medical emergencies, lost luggage, and more. It can also provide financial protection in case of unexpected events that may occur before or after the trip.
       </div>
@@ -88,7 +88,7 @@ const Home = () => {
         Who should consider getting travel insurance?
       </button>
     </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" >
       <div class="accordion-body">
         Anyone planning a trip, should consider getting travel insurance. It can be particularly important for older travelers, those with pre-existing medical conditions, or those traveling to remote or dangerous locations.
       </div>
@@ -100,7 +100,7 @@ const Home = () => {
         What types of coverage does travel insurance offer?
       </button>
     </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
       <div class="accordion-body">
         Travel insurance typically covers a range of unexpected events, including trip cancellation or interruption, medical emergencies, accidental death or injury, lost or stolen luggage, and travel delay. Some policies may also offer additional coverage options such as rental car damage and trip interruption due to weather.
       </div>

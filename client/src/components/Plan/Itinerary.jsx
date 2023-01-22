@@ -9,14 +9,14 @@ const Itinerary = (props) => {
                 <h1>Itinerary Details</h1>
                 <form method="post" onChange={(e)=>props.change(e)} onSubmit={(e)=>props.next(e)}>
                     <div className="form-group my-3 text-start row">
-                    <label htmlFor="formGroupExampleInput">Destination</label>
-                    <select className="form-select" aria-label="Default select example" name="destination" defaultValue={props.plan.destination} required>
+                    <label>Destination</label>
+                    <select className="form-select"  name="destination" defaultValue={props.plan.destination} required>
                         <option selected disabled>Select Your Destination</option>
                         {countries}
                     </select>
                         </div>  
                     <div className="form-group my-3 text-start row">
-                        <label className="align-start" htmlFor="formGroupExampleInput">Departure Date</label>
+                        <label className="align-start" >Departure Date</label>
                         <div className="col">
                             <input type="date" className="form-control" name='departure_date' value={props.plan.departure_date} required/>
                         </div>  
@@ -26,7 +26,7 @@ const Itinerary = (props) => {
                     </div>
                      <div className="form-group my-3 row text-start">
                     <label htmlFor="">Type of travel</label>
-                    <select className="form-select" aria-label="Default select example" name="type" value={props.plan.type} required>
+                    <select className="form-select"  name="type" value={props.plan.type} required>
                         <option selected disabled>Select Your Type of travel</option>
                         <option value="individual">Individual</option>
                         <option value="group">Group</option>
