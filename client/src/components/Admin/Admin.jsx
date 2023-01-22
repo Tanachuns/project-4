@@ -78,7 +78,7 @@ const Admin = () => {
     ]
 
     return (<>{isAuth?<div className="row m-0" style={{height:"100vh"}} >
-        <div className="col-2 p-3  bg-dark bg-gradient text-white" style={{height:"100%"}}>
+        <div className="col-2 p-3  bg-dark bg-gradient text-white" style={{height:"100%",minWidth:"200px"}}>
             <SideBar clickHandler={(n)=>{setState(n)}}/>
         </div>
         <div className="col-10 p-3" style={{height:"100%"}}>

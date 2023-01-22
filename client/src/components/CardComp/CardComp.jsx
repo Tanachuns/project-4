@@ -11,14 +11,15 @@ import Loading from '../Loainding/Loading';
 function CardComp(props) {
   const [isLoading,setIsLoading] = React.useState(true)
   const [cardData,setCardData] = React.useState([])
-
-  React.useEffect(()=>{
+   React.useEffect(()=>{
     axios.get(process.env.REACT_APP_URL+'/plan').then((res)=>{
       setCardData(res.data)
     }).then(()=>{
             setIsLoading(false)
         })
   },[])
+  if (props.plan!==undefined) {
+   
   const card = cardData.filter((item)=>{
     return item.type === props.plan.type
   }).map((item)=>{
@@ -46,6 +47,36 @@ function CardComp(props) {
                 props.next()
               }}>Choose</Button>
               <li className="list-group-item"></li>
+            </ul>
+        </Card>
+        </Col>
+)
+  })
+  return (<>
+   {isLoading?<Loading/>: <Row>
+
+       {card.length===0?<p>No plan for your type of travel.</p>:card}
+      
+    </Row>
+  }
+  </>);
+}
+
+  const card = cardData.map((item)=>{
+    return (      <Col>
+      <Card style={{ width: '18rem' ,minHeight:"330px"}}>
+            <div className="card-header">
+              <b>{item.name}</b>
+            </div>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">Type: {item.type}</li>
+              <li className="list-group-item">Price : {item.plan_price}/{item.unit}</li>
+              <li className="list-group-item">Coverage</li>
+
+              {item.cover.map((item)=>{
+                return <li className="list-group-item">{item.detail} {item.coverage} THB</li>
+              })}
+              <li  className="list-group-item"></li>
             </ul>
         </Card>
         </Col>
