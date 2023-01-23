@@ -59,13 +59,13 @@ const Home = () => {
               <img src="" alt="" />
                    
             <Container style={{marginTop:"1em"}} >
-              <Row>
+              <Row >
                   <h2>Why Come Fly With Me</h2>
                   <p>Don't let unexpected events ruin your vacation plans! Get travel insurance with us and enjoy peace of mind on your next trip. Our coverage includes protection for trip cancellation, medical emergencies, lost luggage, and more. With our reliable and affordable coverage, you can focus on your travels and leave the worries behind. Don't wait, get your travel insurance with us today!</p>
                 </Row> 
-                <Row>
+                <Row className="">
                 <h2>Plans</h2>
-                <CardComp/>
+                <CardComp className="m-auto"/>
                 </Row>
                 <Row>
                   <h2>FAQ</h2>

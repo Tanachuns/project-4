@@ -23,7 +23,7 @@ function CardComp(props) {
   const card = cardData.filter((item)=>{
     return item.type === props.plan.type
   }).map((item)=>{
-    return (      <Col className="col-3" style={{overflow:"scroll"}}>
+    return (      <Col className="col-3">
       <Card style={{ width: '18rem', margin:"1em" }}>
             <div className="card-header">
               <b>{item.name}</b>
@@ -63,7 +63,7 @@ function CardComp(props) {
 }
 
   const card = cardData.map((item)=>{
-    return (      <Col>
+    return (      
       <Card style={{ width: '18rem' ,minHeight:"330px"}}>
             <div className="card-header">
               <b>{item.name}</b>
@@ -79,7 +79,6 @@ function CardComp(props) {
               <li  className="list-group-item"></li>
             </ul>
         </Card>
-        </Col>
 )
   })
   return (<>
