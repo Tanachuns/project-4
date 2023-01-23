@@ -48,11 +48,7 @@ const Home = () => {
                             }  className="btn btn-success" type="button">Buy now</button>}  
                     </div>
                 </Col>
-                <Col>
-                    <div className="banner-right">
-                                  
-                    </div>
-                </Col>
+
             
             </Row>
             </div>
